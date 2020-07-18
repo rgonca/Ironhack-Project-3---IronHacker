@@ -1,6 +1,6 @@
-# Express generator + auth
+# Express generator
 
-Boilerplate for a basic ExpressJS backend (incl. all auth routes and views - [PassportJS](http://www.passportjs.org/) login & sessions)
+Boilerplate for a basic ExpressJS backend
 
 ## Install
 

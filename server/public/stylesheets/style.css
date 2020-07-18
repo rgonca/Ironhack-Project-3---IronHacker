@@ -1,18 +1,5 @@
 body {
-  font-weight: 200; }
-
-h1, h2, h3 {
-  font-weight: 200; }
-
-.navbar {
-  margin-bottom: 70px; }
-
-#errorMsg {
-  background-color: red;
-  color: white;
-  font-weight: 400;
-  text-align: center;
-  padding: 10px 0;
-  margin-top: 5px; }
+  padding: 50px;
+  font-family: sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
