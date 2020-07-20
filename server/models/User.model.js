@@ -1,5 +1,3 @@
-
-
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
@@ -18,8 +16,9 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
+        // revisar de cara al ingreso, no puede haber dos iguales
         // unique: true,
-        // trim: true,
+        // trim: true, 
         // required: true
     },
     name: {
