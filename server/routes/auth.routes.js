@@ -9,8 +9,24 @@ const bcrypt = require("bcrypt")
 
 router.post('/signup', (req, res, next) => {
 
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username,
+        password,
+        email,
+        name,
+        surname,
+        role, bootcamp,
+        bootcampCity,
+        bootcampDate,
+        bootcampMode,
+        avatarUrl,
+        linkedinProfile,
+        githubProfile,
+        projectTitle,
+        projectDescription,
+        projectLink,
+        warName,
+        funFact
+    } = req.body
 
 
     if (!username || !password) {
@@ -40,11 +56,30 @@ router.post('/signup', (req, res, next) => {
 
         const aNewUser = new User({
             username: username,
-            password: hashPass
+            password: hashPass,
+            email: email,
+            name: name,
+            surname: surname,
+            role: role,
+            bootcamp: bootcamp,
+            bootcampCity: bootcampCity,
+            bootcampDate: bootcampDate,
+            bootcampMode: bootcampMode,
+            avatarUrl: avatarUrl,
+            linkedinProfile: linkedinProfile,
+            githubProfile: githubProfile,
+            projectTitle: projectTitle,
+            projectDescription: projectDescription,
+            projectLink: projectLink,
+            warName: warName,
+            funFact: funFact,
+
+
         });
 
         aNewUser.save(err => {
             if (err) {
+                console.log('traza', '“errorrrr”', err)
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
                 return;
             }
