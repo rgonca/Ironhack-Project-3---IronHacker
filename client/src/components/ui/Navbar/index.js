@@ -29,7 +29,7 @@ class Navigation extends Component {
         return (
             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
                 <Navbar.Brand>
-                    <Link to="/">CoastersApp_</Link>
+                    <Link to="/"><img src=""/> IronHacker</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
