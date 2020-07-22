@@ -162,6 +162,8 @@ router.get('/users/:id', (req, res, next) => {
 router.patch('/users/:id', (req, res, next) => {
    
     const allowedFields = [
+        'name',
+        'surname',
         'avatarUrl',
         'linkedinProfile',
         'githubProfile',
