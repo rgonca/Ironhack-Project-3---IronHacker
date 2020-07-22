@@ -33,6 +33,15 @@ class SignupForm extends Component {
         const { name, value } = e.target
         this.setState({ [name]: value })
     }
+    handleBootcampChange = e => {
+        this.setState({ bootcamp: e.target.value })
+    }
+    handleBootcampCityChange = e => {
+        this.setState({ bootcampCity: e.target.value })
+    }
+    handleBootcampModeChange = e => {
+        this.setState({ bootcampMode: e.target.value })
+    }
 
     handleFormSubmit = e => {
         e.preventDefault()
@@ -41,8 +50,7 @@ class SignupForm extends Component {
             .then(response => {
                 this.props.setTheUser(response.data)
                 this.props.handleToast(true, 'Registro completado')
-                this.props.history.push('/users')
-                //    this.props.history.push('/coasters') 
+                this.props.history.push('/profile')
             })
             .catch(err => console.log(err.response.data.message))   // Error handling yay!
     }
@@ -53,7 +61,7 @@ class SignupForm extends Component {
 
                 <Row>
                     <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Registro de usuario</h3>
+                        <h3>User Signup</h3>
 
                         <hr></hr>
 
@@ -87,13 +95,15 @@ class SignupForm extends Component {
 
                             <Form.Group>
                                 <Form.Label>Your Bootcamp</Form.Label>
-                                <Form.Check onChange={this.handleInputChange} value={this.state.bootcamp} name="Web Development" type="radio" value="Web Development" label="Web Development" />
-                                <Form.Check onChange={this.handleInputChange} value={this.state.bootcamp} name="UX/UI Desing" type="radio" value="UX/UI Desing" label="UX/UI Desing" />
-                                <Form.Check onChange={this.handleInputChange} value={this.state.bootcamp} name="Data Analytics" type="radio" value="Data Analytics" label="Data Analytics" />
+                                <Form.Check onChange={this.handleBootcampChange} name="Web Development" type="radio" value="Web Development" label="Web Development" />
+                                <Form.Check onChange={this.handleBootcampChange} name="UX/UI Desing" type="radio" value="UX/UI Desing" label="UX/UI Desing" />
+                                <Form.Check onChange={this.handleBootcampChange} name="Data Analytics" type="radio" value="Data Analytics" label="Data Analytics" />
                             </Form.Group>
 
                             <Form.Group >
-                                <Form.Control as="select" onChange={this.handleInputChange} value={this.state.bootcampCity}>
+
+                                <Form.Control as="select" onChange={this.handleBootcampCityChange} value={this.state.bootcampCity}>
+                                    <option>Select a City</option>
                                     <option value="Madrid">Madrid</option>
                                     <option value="Barcelona">Barcelona</option>
                                     <option value="Miami">Miami</option>
@@ -104,20 +114,18 @@ class SignupForm extends Component {
                                     <option value="Sao Paulo">Sao Paulo</option>
                                     <option value="Lisbon">Lisbon</option>
                                     <option value="Remote">Remote</option>
-
                                 </Form.Control>
                             </Form.Group>
-
                             <Form.Group>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.bootcampDate} name="bootcampDate" type="date" />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Check onChange={this.handleInputChange} value={this.state.bootcampMode} name="Full Time" type="radio" value="Full Time" label="Full Time" />
-                                <Form.Check onChange={this.handleInputChange} value={this.state.bootcampMode} name="Part Time" type="radio" value="Part Time" label="Part Time" />
+                                <Form.Check onChange={this.handleBootcampModeChange} name="Full Time" type="radio" value="Full Time" label="Full Time" />
+                                <Form.Check onChange={this.handleBootcampModeChange} name="Part Time" type="radio" value="Part Time" label="Part Time" />
                             </Form.Group>
 
-                            <Button variant="dark" type="submit">Registrarme</Button>
+                            <Button variant="dark" type="submit">Signup</Button>
                         </Form>
 
                     </Col>

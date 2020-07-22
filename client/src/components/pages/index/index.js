@@ -1,13 +1,36 @@
 
 import React from 'react'
+import './index.css'
+
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Index = () => {
 
     return (
-        <>
-            <h1>IronHackers</h1>
-            <p>Perder la cabeza a saco, esto me va a volver loco</p>
-        </>
+        <Container as="main">
+
+            <Row>
+                <Col md={{ offset: 3, span: 6 }}>
+
+                    <img src="./../../../../public/ironhackLogo.png" alt="IronHack Logo" id="logo" />
+                    <h1>IronHacker</h1>
+                    <h3>Welcome</h3>
+
+                    <hr></hr>
+
+                        <Button variant="outline-primary" href="/login">Login</Button>{' '}
+                        <Button variant="outline-secondary" href="/signup">Signup</Button>{' '}
+
+                  
+
+                </Col>
+            </Row>
+
+
+        </Container>
     )
 }
 

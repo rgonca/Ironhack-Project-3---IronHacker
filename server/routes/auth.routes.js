@@ -76,7 +76,7 @@ router.post('/signup', (req, res, next) => {
             funFact: funFact,
 
 
-        });
+        })
 
         aNewUser.save(err => {
             if (err) {
@@ -150,6 +150,55 @@ router.get('/loggedin', (req, res, next) => {
     }
     res.status(403).json({ message: 'Unauthorized' });
 });
+//HAY QUE REVISARLA
+router.post('/edit', (req, res, next) => {
+      const {
+          password,
+          email,
+          name,
+          surname,
+          role,
+          bootcamp,
+          bootcampCity,
+          bootcampDate,
+          bootcampMode,
+          avatarUrl,
+          linkedinProfile,
+          githubProfile,
+          projectTitle,
+          projectDescription,
+          projectLink,
+          warName,
+          funFact
+      } = req.user
+    console.log('traza', req.body)
+    console.log('traza', 'usuario', req.user);
+    if (req.isAuthenticated()) {
+        User.update(
+            { user: req.user },
+            {
+            password,
+            email,
+            name,
+            surname,
+            role,
+            bootcamp,
+            bootcampCity,
+            bootcampDate,
+            bootcampMode,
+            avatarUrl,
+            linkedinProfile,
+            githubProfile,
+            projectTitle,
+            projectDescription,
+            projectLink,
+            warName,
+            funFact})
+        .then(() => res.status(200).json(req.user))
+        return;
+    } 
+    res.status(403).json({ message: 'Somethig went wrong' });
+})
 
 
 

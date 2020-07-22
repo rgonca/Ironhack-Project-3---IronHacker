@@ -3,10 +3,12 @@ import React, { Component } from 'react'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Image from 'react-bootstrap/Image'
 
 import AuthService from './../../../service/AuthService'
 
 import { Link, NavLink } from 'react-router-dom'
+import './navbar.css'
 
 class Navigation extends Component {
 
@@ -29,13 +31,13 @@ class Navigation extends Component {
         return (
             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
                 <Navbar.Brand>
-                    <Link to="/"><img src=""/> IronHacker</Link>
+                    <Link to="/"><Image className="logo" src="../../../../ironhackLogo.png" alt="IronhackLogo"/></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <Nav.Link as="span">
-                            <NavLink to="/" exact activeStyle={{ color: 'white' }}>Inicio</NavLink>
+                            <NavLink to="/" exact activeStyle={{ color: 'white' }}>Home</NavLink>
                         </Nav.Link>
                         <Nav.Link as="span">
                             <NavLink to="/coasters" activeStyle={{ color: 'white' }}>Montañas</NavLink>
@@ -49,17 +51,17 @@ class Navigation extends Component {
                             ) : (
                                 <>
                                     <Nav.Link as="span">
-                                        <NavLink to="/signup" activeStyle={{ color: 'white' }}>Registro</NavLink>
+                                        <NavLink to="/signup" activeStyle={{ color: 'white' }}>Signup</NavLink>
                                     </Nav.Link>
                                     <Nav.Link as="span">
-                                        <NavLink to="/login" activeStyle={{ color: 'white' }}>Inicio sesión</NavLink>
+                                        <NavLink to="/login" activeStyle={{ color: 'white' }}>Login</NavLink>
                                     </Nav.Link>
                                 </>
                             )
                         }
 
                         <Nav.Link as="span">
-                            <NavLink to="/profile" activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
+                            <NavLink to="/profile" activeStyle={{ color: 'white' }}>Hi, {this.props.loggedInUser ? this.props.loggedInUser.name : 'Guest'}</NavLink>
                         </Nav.Link>
                     </Nav>
 

@@ -66,7 +66,7 @@ const userSchema = new Schema({
     },
     avatarUrl: {
         type: String,
-        default: './../public/images/default-avatar.png'
+        default: 'https://censur.es/wp-content/uploads/2019/03/default-avatar-300x300.png'
     },
     linkedinProfile: {
         type: String,
