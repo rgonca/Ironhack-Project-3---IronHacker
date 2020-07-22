@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
 
 const Index = () => {
 
@@ -14,8 +15,8 @@ const Index = () => {
 
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
-
-                    <img src="./../../../../public/ironhackLogo.png" alt="IronHack Logo" id="logo" />
+                    
+                    <Image src="./../../../../ironhackLogo.png" alt="IronHack Logo" id="logo" />
                     <h1>IronHacker</h1>
                     <h3>Welcome</h3>
 

@@ -1,9 +1,10 @@
 const express = require("express")
-const router = express.Router()
 const passport = require("passport")
-
-const User = require("../models/User.model")
 const bcrypt = require("bcrypt")
+const _ = require("lodash")
+const User = require("../models/User.model")
+
+const router = express.Router()
 
 
 
@@ -150,54 +151,40 @@ router.get('/loggedin', (req, res, next) => {
     }
     res.status(403).json({ message: 'Unauthorized' });
 });
-//HAY QUE REVISARLA
-router.post('/edit', (req, res, next) => {
-      const {
-          password,
-          email,
-          name,
-          surname,
-          role,
-          bootcamp,
-          bootcampCity,
-          bootcampDate,
-          bootcampMode,
-          avatarUrl,
-          linkedinProfile,
-          githubProfile,
-          projectTitle,
-          projectDescription,
-          projectLink,
-          warName,
-          funFact
-      } = req.user
-    console.log('traza', req.body)
-    console.log('traza', 'usuario', req.user);
-    if (req.isAuthenticated()) {
-        User.update(
-            { user: req.user },
-            {
-            password,
-            email,
-            name,
-            surname,
-            role,
-            bootcamp,
-            bootcampCity,
-            bootcampDate,
-            bootcampMode,
-            avatarUrl,
-            linkedinProfile,
-            githubProfile,
-            projectTitle,
-            projectDescription,
-            projectLink,
-            warName,
-            funFact})
-        .then(() => res.status(200).json(req.user))
+
+//User Edition
+
+router.get('/users/:id', (req, res, next) => {
+    User.findById(req.params.id)
+        .then((data) => res.status(200).json(data))
+        .catch((err) => console.log(err))
+})
+router.patch('/users/:id', (req, res, next) => {
+   
+    const allowedFields = [
+        'avatarUrl',
+        'linkedinProfile',
+        'githubProfile',
+        'projectTitle',
+        'projectDescription',
+        'projectLink',
+        'warName',
+        'funFact'
+    ]
+
+    const fields = _.pick(req.body, allowedFields)
+    if (!req.isAuthenticated()) {
+        res.status(401).json({ message: 'Unauthorized' })
         return;
-    } 
-    res.status(403).json({ message: 'Somethig went wrong' });
+    }
+    const userId = req.params.id
+    if (req.user.role !== 'ADMIN' && userId !== req.user.id) {
+        res.status(403).json({ message: 'Forbidden' })
+        return;
+    }
+    User.findByIdAndUpdate(userId,{$set: fields})
+        .then((data) => res.status(200).json(data))
+        .catch((err) => console.log(err))
 })
 
 
