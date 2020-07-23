@@ -20,19 +20,21 @@ router.get('/getOneCard/:card_id', (req, res, next) => {
 })
 
 router.post('/newCard', (req, res, next) => {
-    const {
-        date
-    } = req.body
-    Card.create({
-        owner: req.user.id,
-        date: moment(date).format("MMM Do YY")
-    })
+
+    const { cardContent, cardTags, date } = req.body
+    console.log('traza', req.body);
+        Card.create({
+            owner: req.user.id,
+            cardContent,
+            cardTags,
+            date: moment(date).format("MMM Do YY")
+        })
         .then(response => res.json(response))
         .catch(err => next(new Error(err)))
 })
 
 router.get('/deleteCard', (req, res, next) => {
-    
+
     Card.findByIdAndDelete(req.query.id)
         .then(response => res.json(response))
         .catch(err => next(new Error(err)))
