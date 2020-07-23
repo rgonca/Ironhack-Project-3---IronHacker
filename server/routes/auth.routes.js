@@ -184,7 +184,7 @@ router.patch('/users/:id', (req, res, next) => {
         res.status(403).json({ message: 'Forbidden' })
         return;
     }
-    User.findByIdAndUpdate(userId,{$set: fields})
+    User.findByIdAndUpdate(userId,{$set: fields}, {new: true})
         .then((data) => res.status(200).json(data))
         .catch((err) => console.log(err))
 })

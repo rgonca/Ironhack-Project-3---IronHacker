@@ -34,7 +34,7 @@ class LoginForm extends Component {
                 this.props.handleToast(true, 'Sesión inciada')
                 this.props.history.push("/profile")
             })
-            .catch(err => console.log(err.response.data.message))   // Error handling yay!
+            .catch(err => console.log(err.response.data.message))
     }
 
     render() {

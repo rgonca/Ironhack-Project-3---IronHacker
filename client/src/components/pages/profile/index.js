@@ -16,31 +16,13 @@ class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: this.props.loggedInUser,
             showModal: false
         }
         this.authService = new AuthService
     }
 
-    componentDidMount = () => this.updateProfile()
-    // componentDidMount = () => {
-
-    //     const id = this.props.match.params.coaster_id
-
-    //     this.coasterService
-    //         .getOneCoaster(id)
-    //         .then(response => this.setState({ coasterDetails: response.data }))
-    //         .catch(err => console.log(err))
-    // }
-
-    updateProfile = () => {
-        this.authService
-            .getUser()
-            .then(response => this.setState({ users: response.data }))
-            .catch(err => console.log(err))
-    }
-
-    handleModal = status => this.setState({ showModal: status })
+    handleModal = () => this.setState({ showModal: true })
+    onHide = () => this.setState({ showModal: false })
 
     handleUserEdition = () => {
         this.handleModal(false)
@@ -49,7 +31,7 @@ class Profile extends Component {
 
     render() {
 
-        console.log('traza', this.props.loggedInUser);
+        // console.log('traza', this.props);
         const id = this.props.loggedInUser ? this.props.loggedInUser._id : ""
         const name = this.props.loggedInUser ? this.props.loggedInUser.name : ""
         const surname = this.props.loggedInUser ? this.props.loggedInUser.surname : ""
@@ -71,7 +53,7 @@ class Profile extends Component {
                     </Row>
                     <Row>
                         {
-                            this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear nuevo item</Button>
+                            this.props.loggedInUser && <Button onClick={() => this.handleModal()} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear nuevo item</Button>
                         }
 
                     </Row>
@@ -133,9 +115,12 @@ class Profile extends Component {
                     </Row>
                 </Container>
 
-                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                <Modal size="lg"
+                    show={this.state.showModal}
+                 onHide={this.onHide}
+                >
                     <Modal.Body>
-                        <EditionForm
+                        {this.state.showModal ?  <EditionForm 
                             id={id}
                             name={name}
                             surname={surname} 
@@ -147,7 +132,9 @@ class Profile extends Component {
                             projectLink={projectLink}
                             warName={warName}
                             funFact={funFact}
-                            handleUserEdition={this.handleUserEdition} />
+                            setTheUser= {this.props.setTheUser}
+                            closeModal={this.onHide}
+                        /> : null}
                     </Modal.Body>
                 </Modal>
 

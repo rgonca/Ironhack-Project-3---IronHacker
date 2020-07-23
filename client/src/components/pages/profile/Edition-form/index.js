@@ -31,10 +31,12 @@ class EditionForm extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
         this.authService
-            .editUser(this.props.id, this.state)
-            .then(() => this.props.handleFormSubmit())
+            .editUser(this.state, this.props.id)
+            .then((response) => this.props.setTheUser(response.data))
             .catch(err => console.log(err))
+        this.props.closeModal()
     }
+
     render() {
         return (
             <>
