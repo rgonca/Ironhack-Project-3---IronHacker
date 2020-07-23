@@ -8,8 +8,11 @@ class EditionForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+
+            ...this.props.editableUser,
             name: this.props.name,
             surname: this.props.surname,
+            role: this.props.role,
             avatarUrl: this.props.avatarUrl,
             linkedinProfile: this.props.linkedinProfile,
             githubProfile: this.props.githubProfile,
@@ -36,13 +39,50 @@ class EditionForm extends Component {
             .catch(err => console.log(err))
         this.props.closeModal()
     }
+    printRoleForm = () => {
+        if (this.state.role !== 'ADMIN') {
+            return
+        } return (
+            <>
+                <Form.Group>
+                    <Form.Control as="select" onChange={this.handleInputChange} value={this.state.role} name="role">
+                        <option>Select a Role</option>
+                        <option value="STUDENT">STUDENT</option>
+                        <option value="ALUMNI">ALUMNI</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </Form.Control>
+                </Form.Group>
+            </>
+        )
+    }
+
+    printProtectedFields = () => {
+        if (this.state.role !== 'ALUMNI') {
+            return
+        }
+        return (
+
+            <>
+                <Form.Group>
+                    <Form.Label>Are you working on a project? Maybe a great job?... Tell us more</Form.Label>
+                    <Form.Control onChange={this.handleInputChange} value={this.state.projectTitle} name="projectTitle" type="text" placeholder="Your project title" />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label></Form.Label>
+                    <Form.Control onChange={this.handleInputChange} value={this.state.projectDescription} name="projectDescription" as="textarea" rows="3" placeholder="Tell us more..." />
+                </Form.Group>
+            </>
+        )
+    }
 
     render() {
+
         return (
             <>
                 <h3>Edit Profile</h3>
                 <hr></hr>
                 <Form onSubmit={this.handleFormSubmit}>
+                    {this.printRoleForm()}
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" />
@@ -64,14 +104,8 @@ class EditionForm extends Component {
                         <Form.Label>GitHub</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.githubProfile} name="githubProfile" type="text" />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Are you working on a project? Maybe a great job?... Tell us more</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.projectTitle} name="projectTitle" type="text" placeholder="Your project title" />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label></Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.projectDescription} name="projectDescription" as="textarea" rows="3" placeholder="Tell us more..." />
-                    </Form.Group>
+
+                    {this.printProtectedFields()}
                     <Form.Group>
                         <Form.Label>Something funny about the Bootcamp?</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.warName} name="warName" type="text" placeholder="A nickname maybe?" />

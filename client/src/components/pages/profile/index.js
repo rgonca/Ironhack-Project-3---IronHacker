@@ -35,6 +35,7 @@ class Profile extends Component {
         const id = this.props.loggedInUser ? this.props.loggedInUser._id : ""
         const name = this.props.loggedInUser ? this.props.loggedInUser.name : ""
         const surname = this.props.loggedInUser ? this.props.loggedInUser.surname : ""
+        const role = this.props.loggedInUser ? this.props.loggedInUser.role : ""
         const avatarUrl = this.props.loggedInUser ? this.props.loggedInUser.avatarUrl : ""
         const linkedinProfile = this.props.loggedInUser ? this.props.loggedInUser.linkedinProfile : ""
         const githubProfile = this.props.loggedInUser ? this.props.loggedInUser.githubProfile : ""
@@ -120,10 +121,14 @@ class Profile extends Component {
                  onHide={this.onHide}
                 >
                     <Modal.Body>
-                        {this.state.showModal ?  <EditionForm 
+                        
+                        {this.state.showModal ? <EditionForm 
+                            loggedInUser={this.props.loggedInUser}
+                            editableUser={this.props.loggedInUser}
                             id={id}
                             name={name}
                             surname={surname} 
+                            role = {role}
                             avatarUrl={avatarUrl}
                             linkedinProfile={linkedinProfile}
                             githubProfile={githubProfile}

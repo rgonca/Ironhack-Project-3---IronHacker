@@ -4,16 +4,22 @@ const Schema = mongoose.Schema
 
 const cardSchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
-    cardContent: {
+    content: {
         type: String,
-        maxlength: 140,
         required : true
     },
-    cardTags: {
+    tags: {
         type: [String],
-        default: ['Misc']
+        enum: ['WebDev', 'UX/UI', 'Data', 'Jobs', 'Projects', 'Offers', 'Requests', 'Misc'],
+        default: 'Misc'
     },
-    cardDate: Date
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    comments: {
+        type: [String],
+    }
 });
 
 const Card = mongoose.model("Card", cardSchema)
