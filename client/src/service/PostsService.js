@@ -12,5 +12,5 @@ export default class PostsService {
     getAllPosts = () => this.service.get('/getAllPosts')
     getOnePost = id => this.service.get(`/getOnePost/${id}`)
     createPost = post => this.service.post(`/newPost`, post)
-    deletePost = (id, post) => this.service.delete(`/${id}`, post)
+    deletePost = id => this.service.delete(`/${id}`)
 }
