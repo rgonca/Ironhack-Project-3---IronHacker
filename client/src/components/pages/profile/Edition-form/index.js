@@ -40,6 +40,8 @@ class EditionForm extends Component {
         this.props.closeModal()
     }
     printRoleForm = () => {
+        //this.state.rore && <
+        // condicion ? escriba esto:null
         if (this.state.role !== 'ADMIN') {
             return
         } return (

@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema
 
-const cardSchema = new Schema({
+const postSchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
     content: {
         type: String,
@@ -22,5 +22,5 @@ const cardSchema = new Schema({
     }
 });
 
-const Card = mongoose.model("Card", cardSchema)
+const Card = mongoose.model("Card", postSchema)
 module.exports = Card
