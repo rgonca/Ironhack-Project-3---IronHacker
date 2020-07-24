@@ -15,6 +15,7 @@ import SignupForm from './auth/Signup-form'
 import LoginForm from './auth/Login-form'
 import ProfilePage from './pages/profile'
 import IndexPage from './pages/index'
+import Card from 'react-bootstrap/esm/Card';
 
 
 class App extends Component {

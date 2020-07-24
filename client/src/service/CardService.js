@@ -12,4 +12,5 @@ export default class CoasterService {
     getAllCards = () => this.service.get('/getAllCards')
     getOneCard = id => this.service.get(`/getOneCard/${id}`)
     createCard = card => this.service.post(`/newCard`, card)
+    deleteCard = (id, card) => this.service.delete(`/${id}`, card)
 }
