@@ -159,8 +159,9 @@ router.get('/users/:id', (req, res, next) => {
         .then((data) => res.status(200).json(data))
         .catch((err) => console.log(err))
 })
+
 router.patch('/users/:id', (req, res, next) => {
-   
+
     const allowedFields = [
         'name',
         'surname',
@@ -185,9 +186,9 @@ router.patch('/users/:id', (req, res, next) => {
         res.status(403).json({ message: 'Forbidden' })
         return;
     }
-    
 
-    User.findByIdAndUpdate(userId,{$set: fields}, {new: true})
+
+    User.findByIdAndUpdate(userId, { $set: fields }, { new: true })
         .then((data) => res.status(200).json(data))
         .catch((err) => console.log(err))
 })

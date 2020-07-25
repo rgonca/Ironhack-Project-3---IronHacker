@@ -60,7 +60,13 @@ router.delete('/:post_id', (req, res, next) => {
 
 
 // })
+router.get('/getAllUsers', (req, res, next) => {
 
+    User.find()
+        // .populate('owner', ['name', 'surname', 'avatarUrl'])
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
 
 
 module.exports = router

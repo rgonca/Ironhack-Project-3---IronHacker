@@ -11,6 +11,7 @@ import Message from './ui/CustomToast'
 
 
 import Wall from './Wall/Posts-list'
+import Directory from './Directory/Users-list'
 import SignupForm from './auth/Signup-form'
 import LoginForm from './auth/Login-form'
 import ProfilePage from './pages/profile'
@@ -61,6 +62,7 @@ class App extends Component {
             this.state.loggedInUser ? <ProfilePage loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser} /> : <Redirect to='/signup' />}
           />
           <Route exact path="/wall" render={() => <Wall loggedInUser={this.state.loggedInUser} />} />
+          <Route exact path="/directory" render={() => <Directory loggedInUser={this.state.loggedInUser} />} />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast} />} />
         </Switch>

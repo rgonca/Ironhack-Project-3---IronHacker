@@ -42,6 +42,9 @@ class Navigation extends Component {
                         <Nav.Link as="span">
                             <NavLink to="/wall" activeStyle={{ color: 'white' }}>The wall</NavLink>
                         </Nav.Link>
+                        <Nav.Link as="span">
+                            <NavLink to="/directory" activeStyle={{ color: 'white' }}>The Directory</NavLink>
+                        </Nav.Link>
 
                         {this.props.loggedInUser ?
                             (

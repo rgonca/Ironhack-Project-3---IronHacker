@@ -15,7 +15,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
     // const Date = (createdAt) => {
     //     const fixedDate = new Date(createdAt)
     //     return fixedDate.getFullYear() + 
-    console.log('trazaloca', loggedInUser.role);
+
     return (
 
         <Col md={4}>
