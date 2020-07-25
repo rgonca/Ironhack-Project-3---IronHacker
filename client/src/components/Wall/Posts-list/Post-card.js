@@ -23,7 +23,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                 <Card.Body>
                     <Card.Title>
                         <Image className="avatar" src={owner.avatarUrl} />
-                        {owner.name},{owner.surname}
+                        {owner.name} {owner.surname}
                     </Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{createdAt}</Card.Subtitle>
                     <Card.Text>{content}</Card.Text>

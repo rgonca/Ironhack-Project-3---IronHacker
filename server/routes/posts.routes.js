@@ -60,6 +60,8 @@ router.delete('/:post_id', (req, res, next) => {
 
 
 // })
+
+//Deploy the list of users
 router.get('/getAllUsers', (req, res, next) => {
 
     User.find()
@@ -67,6 +69,16 @@ router.get('/getAllUsers', (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 })
+
+//selects one user
+
+router.get('/getOneUser/:user_id', (req, res, next) => {
+
+    User.findById(req.params.user_id)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 
 
 module.exports = router

@@ -41,7 +41,7 @@ class EditionForm extends Component {
     }
     printRoleForm = () => {
 
-        if (this.state.role !== 'ADMIN') {
+        if (this.props.loggedInUser.role !== 'ADMIN') {
             return
         } return (
             <>
@@ -58,7 +58,7 @@ class EditionForm extends Component {
     }
 
     printProtectedFields = () => {
-        if (this.state.role !== 'ALUMNI') {
+        if (this.props.loggedInUserrole !== 'ALUMNI') {
             return
         }
         return (
