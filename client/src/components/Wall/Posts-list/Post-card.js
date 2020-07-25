@@ -17,7 +17,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
     //     return fixedDate.getFullYear() + 
 
     return (
-
+        
         <Col md={4}>
             <Card className="post-card">
                 <Card.Body>
@@ -35,7 +35,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                 ))}
                             </ListGroup>
                         ))}
-                        {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner ? 'que intentas campeon' : <div onClick={() => deleteButton(_id)}><Button>Delete</Button></div>}
+                        {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => deleteButton(_id)}><Button>Delete</Button></div>}
                     </Card.Footer>
                 </Card.Body>
             </Card>

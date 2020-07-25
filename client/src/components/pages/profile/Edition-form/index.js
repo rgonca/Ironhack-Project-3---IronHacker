@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from '../../../../service/AuthService'
-
+import FilesService from '../../../../service/FilesService'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -23,12 +23,25 @@ class EditionForm extends Component {
             funFact: this.props.funFact
         }
         this.authService = new AuthService()
+        this.filesService = new FilesService()    // CLOUDINARYCONFIG  
 
     }
 
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({ [name]: value })
+    }
+
+    handleFileUpload = e => {
+        const uploadData = new FormData()
+        uploadData.append("avatarUrl", e.target.files[0])
+
+        this.filesService.handleUpload(uploadData)
+            .then(response => {
+                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
+                this.setState({ avatarUrl: response.data.secure_url })
+            })
+            .catch(err => console.log(err))
     }
 
     handleFormSubmit = e => {
@@ -84,6 +97,10 @@ class EditionForm extends Component {
                 <hr></hr>
                 <Form onSubmit={this.handleFormSubmit}>
                     {this.printRoleForm()}
+                    <Form.Group>
+                        <Form.Label>Imagen (archivo)</Form.Label>
+                        <Form.Control name="avatarUrl" type="file" onChange={this.handleFileUpload} />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" />

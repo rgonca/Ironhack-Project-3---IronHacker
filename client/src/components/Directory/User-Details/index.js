@@ -47,8 +47,6 @@ class UserDetails extends Component {
     }
 
     render() {
-        console.log('traza', 'elusuario', this.state.userDetails)
-        console.log('traza viendo', this.props.setTheUser);
 
         return (
             !this.state.userDetails ? <h3>Wait for it...</h3> :
