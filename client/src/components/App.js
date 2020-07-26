@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '@fortawesome/react-fontawesome'
+import '@fortawesome/free-solid-svg-icons'
+import '@fortawesome/fontawesome-svg-core'
 import './App.css';
 
 import AuthService from './../service/AuthService'

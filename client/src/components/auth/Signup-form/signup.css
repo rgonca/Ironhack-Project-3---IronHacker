@@ -1,0 +1,12 @@
+main {
+      font-family:'Montserrat', sans-serif;
+}
+
+.form-label {
+      font-weight: bolder;
+      font-size: 1.2em;
+
+}
+.signup {
+    margin-top: 10%;
+}

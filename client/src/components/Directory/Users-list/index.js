@@ -3,10 +3,9 @@ import PostsService from '../../../service/PostsService'
 
 import UserCard from './User-card'
 
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+
+import './users-list.css'
 
 class UsersDirectory extends Component {
     constructor(props) {
@@ -28,8 +27,8 @@ class UsersDirectory extends Component {
     render() {
         return (
             <>
-                <h1>Aqui ira la lista de usuarios</h1>
-                <Row>
+                <h1>The Directory</h1>
+                <Row >
                     {this.state.users.map(elm => <UserCard key={elm._id} {...elm}  loggedInUser={this.props.loggedInUser} />)}
                 </Row>
             </>

@@ -8,6 +8,8 @@ import ShareLink from 'react-linkedin-share-link'
 
 import LinkdinLogo from './linkdinlogo.png'
 import GitHubLogo from './githublogo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
@@ -47,50 +49,53 @@ class Profile extends Component {
     render() {
         return (
             <>
-                <Container>
-                    <Image src={this.props.loggedInUser.avatarUrl} alt="Profile Picture" rounded />
+                <Container className="profile">
+                    <Image src={this.props.loggedInUser.avatarUrl} alt="Profile Picture" rounded className='profilePicture' />
                     <h1>{this.props.loggedInUser.name} {this.props.loggedInUser.surname}</h1>
                     {
-                        this.props.loggedInUser && <Button onClick={() => this.handleModal()} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear nuevo item</Button>
+                        this.props.loggedInUser && <Button onClick={() => this.handleModal()} variant="dark" size="sm" style={{ marginBottom: '20px' }}><FontAwesomeIcon icon={faUserEdit} /></Button>
                     }
                     <hr></hr>
- 
-                        <h3>{this.props.loggedInUser.bootcamp}</h3>
-                        <h4>{this.props.loggedInUser.bootcampCity}</h4>
-                        <h5>{this.props.loggedInUser.bootcampMode}</h5>
-                        <h5>{this.props.loggedInUser.bootcampDate}</h5>
-                    
+
+                    <h3>{this.props.loggedInUser.bootcamp}</h3>
+                    <h4>{this.props.loggedInUser.bootcampCity}</h4>
+                    <h5>{this.props.loggedInUser.bootcampMode}</h5>
+                    <h5>{this.props.loggedInUser.bootcampDate}</h5>
+
                     <hr></hr>
                     <h3>{this.props.loggedInUser.role}</h3>
                     <hr></hr>
 
                     <h2>Your Links</h2>
-
-
-
-                    <Link>
-                        <Image className="logos" src={LinkdinLogo} />
-                        <a target='_blank' href={this.props.loggedInUser.linkedinProfile}>{this.props.loggedInUser.linkedinProfile}</a>
-                    </Link>
-                    <Link>
-                        <Image className="logos" src={GitHubLogo} />
-                        <a target='_blank' href={this.props.loggedInUser.githubProfile}>{this.props.loggedInUser.githubProfile}</a>
-                    </Link>
+                    
+                    <div className="links">
+                        <Link>
+                            <Image className="logos" src={LinkdinLogo} />
+                            <a target='_blank' href={this.props.loggedInUser.linkedinProfile}>{this.props.loggedInUser.linkedinProfile}</a>
+                        </Link>
+                        <hr></hr>
+                        <Link>
+                            <Image className="logos" src={GitHubLogo} />
+                            <a target='_blank' href={this.props.loggedInUser.githubProfile}>{this.props.loggedInUser.githubProfile}</a>
+                        </Link>
+                    </div>
                     <hr></hr>
 
                     <h2>Interesting Info</h2>
-
+                    <hr></hr>
                     <h3>{this.props.loggedInUser.projectTitle}</h3>
                     <p>{this.props.loggedInUser.projectDescription}</p>
 
                     <hr></hr>
 
                     <h2>Fun Facts</h2>
-
-                    <h3>Nickname: </h3>
-                    <h4>{this.props.loggedInUser.warName}</h4>
-
+                    <hr></hr>
+                    <div className="warName">
+                        <h3>Nickname: </h3>
+                        <h4>"{this.props.loggedInUser.warName}"</h4>
+                    </div>
                     <p>{this.props.loggedInUser.funFact}</p>
+
                 </Container>
 
                 <Modal size="lg"

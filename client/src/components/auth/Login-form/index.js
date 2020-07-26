@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+import './login.css'
+
 
 class LoginForm extends Component {
     constructor(props) {
@@ -42,8 +44,8 @@ class LoginForm extends Component {
             <Container as="main">
 
                 <Row>
-                    <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Login</h3>
+                    <Col className='login' md={{ offset: 3, span: 6 }}>
+                        <h3>Hello there!</h3>
 
                         <hr></hr>
 
@@ -57,10 +59,10 @@ class LoginForm extends Component {
                             <Form.Group>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                                <Form.Text className="text-muted">Prove you are in the Sect</Form.Text>
+                                <Form.Text className="text-muted"></Form.Text>
                             </Form.Group>
 
-                            <Button variant="dark" type="submit">Iniciar sesión</Button>
+                            <Button variant="outline-primary" size="lg" type="submit">Login</Button>
                         </Form>
 
                     </Col>

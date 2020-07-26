@@ -98,13 +98,13 @@ class EditionForm extends Component {
                 <Form onSubmit={this.handleFormSubmit}>
                     {this.printRoleForm()}
                     <Form.Group>
-                        <Form.Label>Imagen (archivo)</Form.Label>
+                        <Form.Label>Upload profile picture</Form.Label>
                         <Form.Control name="avatarUrl" type="file" onChange={this.handleFileUpload} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" />
-                        <Form.Text className="text-muted">Sin faltas de ortografía.</Form.Text>
+                        <Form.Text className="text-muted"></Form.Text>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Surname</Form.Label>

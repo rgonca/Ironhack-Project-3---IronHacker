@@ -1,0 +1,11 @@
+.user-card {
+    margin-bottom: 40px;
+      font-family:'Montserrat', sans-serif;
+      width: 20rem;
+      text-decoration: none;
+      margin-right: 40px;
+}
+.card-title {
+    color: black;
+    font-weight: bolder;
+}

@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -56,7 +58,7 @@ class PostsWall extends Component {
 
                     <h1>The Wall</h1>
                     {
-                        this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear nuevo item</Button>
+                        this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
                     }
                     <Row>
                         {this.state.posts.map(elm => <PostCard key={elm._id} {...elm} deleteButton={this.deletePostButton} loggedInUser={this.props.loggedInUser}/>)}

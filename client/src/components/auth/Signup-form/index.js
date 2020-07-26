@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import './signup.css'
 
 
 class SignupForm extends Component {
@@ -60,7 +61,7 @@ class SignupForm extends Component {
             <Container as="main">
 
                 <Row>
-                    <Col md={{ offset: 3, span: 6 }}>
+                    <Col md={{ offset: 3, span: 6 }} className="signup">
                         <h3>User Signup</h3>
 
                         <hr></hr>
@@ -75,7 +76,7 @@ class SignupForm extends Component {
                             <Form.Group>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                                <Form.Text className="text-muted">Mínimo tres caracteres, mangurrián.</Form.Text>
+                                <Form.Text className="text-muted">Should have least three characters</Form.Text>
                             </Form.Group>
 
                             <Form.Group>
@@ -125,7 +126,7 @@ class SignupForm extends Component {
                                 <Form.Check onChange={this.handleBootcampModeChange} name="Part Time" type="radio" value="Part Time" label="Part Time" />
                             </Form.Group>
 
-                            <Button variant="dark" type="submit">Signup</Button>
+                            <Button variant="outline-secondary" size="lg" type="submit">Signup</Button>
                         </Form>
 
                     </Col>
