@@ -54,7 +54,7 @@ class PostForm extends Component {
                     <Form.Group>
                         
                         <Form.Check onChange={this.AddItemsToArray} name="WebDev" type="checkbox" value="WebDev" label="WebDev" />
-                        <Form.Check onChange={this.AddItemsToArray} name="UX/UI" type="Checkbox" value="UX/UI" label="UX/UI" />
+                        <Form.Check onChange={this.AddItemsToArray} name="UXUI" type="Checkbox" value="UXUI" label="UX/UI" />
                         <Form.Check onChange={this.AddItemsToArray} name="Data" type="checkbox" value="Data" label="Data" />
                         <Form.Check onChange={this.AddItemsToArray} name="Jobs" type="checkbox" value="Jobs" label="Jobs" />
                         <Form.Check onChange={this.AddItemsToArray} name="Projects" type="checkbox" value="Projects" label="Projects" />

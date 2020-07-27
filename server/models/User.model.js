@@ -64,7 +64,7 @@ const userSchema = new Schema({
     },
 
     bootcampDate: {
-        type: Date,
+        type: String,
         // required: true
     },
 

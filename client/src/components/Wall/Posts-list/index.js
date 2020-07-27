@@ -61,7 +61,7 @@ class PostsWall extends Component {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
                     }
                     <Row>
-                        {this.state.posts.map(elm => <PostCard key={elm._id} {...elm} deleteButton={this.deletePostButton} loggedInUser={this.props.loggedInUser}/>)}
+                        {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm} deleteButton={this.deletePostButton} loggedInUser={this.props.loggedInUser}/>)}
                     </Row>
                 </Container>
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>

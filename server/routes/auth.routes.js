@@ -2,6 +2,7 @@ const express = require("express")
 const passport = require("passport")
 const bcrypt = require("bcrypt")
 const _ = require("lodash")
+const moment =require("moment")
 const User = require("../models/User.model")
 
 const router = express.Router()
@@ -65,7 +66,7 @@ router.post('/signup', (req, res, next) => {
             role: role,
             bootcamp: bootcamp,
             bootcampCity: bootcampCity,
-            bootcampDate: bootcampDate,
+            bootcampDate: moment(bootcampDate).format('MMMM YYYY'),
             bootcampMode: bootcampMode,
             avatarUrl: avatarUrl,
             linkedinProfile: linkedinProfile,

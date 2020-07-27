@@ -1,14 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
+const _ = require("lodash")
 
 const Post = require('../models/Post.model')
 const User = require('../models/User.model')
+const Comment = require('../models/Comments.model')
+const { response } = require('express')
 
 // Endpoints
 //Deploy de list of posts
 router.get('/getAllPosts', (req, res, next) => {
 
-    Post.find().populate('owner', ['name', 'surname','avatarUrl'])
+    Post.find().populate('owner', ['name', 'surname', 'avatarUrl'])
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -21,7 +25,7 @@ router.get('/getOnePost/:post_id', (req, res, next) => {
 })
 //creates one post
 router.post('/newPost', (req, res, next) => {
-//chequear usuario loggeado
+    //chequear usuario loggeado
     if (req.user.role === 'STUDENT') {
         res.status(401).json({ message: 'Unauthorized' })
         return;
@@ -32,7 +36,7 @@ router.post('/newPost', (req, res, next) => {
         owner: req.user.id,
         content,
         tags,
-        createdAt,
+        createdAt: moment(createdAt).format('MMMM Do YYYY'),
         comments
     })
         .then(response => res.json(response))
@@ -54,9 +58,26 @@ router.delete('/:post_id', (req, res, next) => {
         .catch(err => next(new Error(err)))
 
 })
-//creates one comment
-// router.post('/users/:userId/comments', (req, res, next) => {
+//Selects posts by tags
+router.get('/postByTags/:tags', (req, res, next) => {
 
+    Post.find({ tags: { $eq: req.params.tags } })
+        .then(response => res.json(response))
+        .catch(err => next(new Error(err)))
+    
+})
+//creates one comment
+// router.post('/newComment', (req, res, next) => {
+
+//     const { content, createdAt } = req.body
+
+//     Comment.create({
+//         owner: req.user.id,
+//         content,
+//         createdAt: moment(createdAt).format('MMMM Do YYYY'),
+//     })
+//         .then(response => res.json(response))
+//         .catch(err => next(new Error(err)))
 
 
 // })
@@ -78,6 +99,7 @@ router.get('/getOneUser/:user_id', (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 })
+
 
 
 

@@ -6,19 +6,19 @@ const postSchema = new Schema({
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
     content: {
         type: String,
-        required : true
+        required: true
     },
     tags: {
         type: [String],
-        enum: ['WebDev', 'UX/UI', 'Data', 'Jobs', 'Projects', 'Offers', 'Requests', 'Misc'],
+        enum: ['WebDev', 'UXUI', 'Data', 'Jobs', 'Projects', 'Offers', 'Requests', 'Misc'],
         default: 'Misc'
     },
     createdAt: {
-        type: Date,
+        type: String,
         default: Date.now
     },
     comments: {
-        type: [String],
+        type: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     }
 });
 
