@@ -7,12 +7,15 @@ const Post = require('../models/Post.model')
 const User = require('../models/User.model')
 const Comment = require('../models/Comments.model')
 const { response } = require('express')
+const { compact, result } = require('lodash')
 
 // Endpoints
 //Deploy de list of posts
 router.get('/getAllPosts', (req, res, next) => {
 
-    Post.find().populate('owner', ['name', 'surname', 'avatarUrl'])
+    Post.find()
+        .populate('owner', ['name', 'surname', 'avatarUrl'])
+        .populate('comments', ['owner', ['name'], 'content', 'createdAt'])
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -64,22 +67,49 @@ router.get('/postByTags/:tags', (req, res, next) => {
     Post.find({ tags: { $eq: req.params.tags } })
         .then(response => res.json(response))
         .catch(err => next(new Error(err)))
-    
+
 })
-//creates one comment
-// router.post('/newComment', (req, res, next) => {
 
-//     const { content, createdAt } = req.body
+//pushes a new comment into the post
+router.post('/commentToPost/:post_id', (req, res, next) => {
+    const postId = req.params.post_id
+    const { content, createdAt } = req.body
+    Comment.create({
+        owner: req.user.id,
+        content,
+        createdAt: moment(createdAt).format('MMMM Do YYYY'),
+    }) 
+        .then(result => Post.findByIdAndUpdate(postId, {
+            $push: {
+                "comments": result._id
+            }
+        }, { new: true, upsert: true }))
+        .then(response => res.json(response))
+        .catch(err => next(new Error(err)))
 
-//     Comment.create({
-//         owner: req.user.id,
-//         content,
-//         createdAt: moment(createdAt).format('MMMM Do YYYY'),
-//     })
+})
+//Deletes a Comment
+router.delete('/comments/:comment_id', (req, res, next) => {
+    //hacer middleware para chequear usuario
+
+    Comment.findById(req.params.comment_id)
+        .then(comment => {
+            if (req.user.role !== 'ADMIN' && req.user.id !== comment.owner) {
+                res.status(403).json({ message: 'Forbidden' })
+                return
+            }
+            return comment.remove()
+        })
+        .then(response => res.json(response))
+        .catch(err => next(new Error(err)))
+
+})
+
+// router.get('/:post_id/getallcomments', (req, res, next) => {
+
+//     Comment.find().populate('owner', ['name', 'surname', 'avatarUrl'])
 //         .then(response => res.json(response))
-//         .catch(err => next(new Error(err)))
-
-
+//         .catch(err => next(err))
 // })
 
 //Deploy the list of users
