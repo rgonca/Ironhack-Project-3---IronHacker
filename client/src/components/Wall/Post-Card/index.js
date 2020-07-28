@@ -2,8 +2,9 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import CommentForm from '../Comment-form'
-
+import CreateComment from '../Create-comment'
+import EditPost from '../Edit-post'
+import Comments from './comments'
 
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
@@ -17,13 +18,17 @@ import './Post-card.css'
 
 
 
-const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, commentPost,  }) => {
+const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, updateWall, handleEditionModal, editPostButton }) => {
 
-    console.log('traza el post', _id);
     return (
 
         <Col md={8}>
             <Card className="post-card">
+                <Card.Header>
+                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => deleteButton(_id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
+                    <div onClick={(() => handleEditionModal(true)) }  ><FontAwesomeIcon icon={faEye} size="lg" /></div>
+
+                </Card.Header>
                 <Card.Body>
                     <Link to={`/user/${owner._id}`}>
                         <Card.Title>
@@ -46,21 +51,6 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                         <Accordion>
                             <Card>
                                 <Card.Header>
-
-                                    <Accordion.Toggle as={Button} onClick={() => commentPost(_id)} variant="link" eventKey="0">
-                                        Add a comment
-                                </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body>
-                                        <CommentForm id={_id} />
-                                    </Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                        <Accordion>
-                            <Card>
-                                <Card.Header>
                                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                         Comments <FontAwesomeIcon icon={faEye} size="lg" />
                                     </Accordion.Toggle>
@@ -70,7 +60,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                         {
                                             ['lg'].map(idx => (
                                                 <ListGroup>
-                                                    {comments.map(comments => (
+                                                    {comments.reverse().map(comments => (
                                                         <ListGroup.Item key={comments}>
                                                             <Card>
                                                                 <Card.Header> <Link to={`/user/${comments.owner}`}>
@@ -96,17 +86,16 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                     </Card.Body>
                                 </Accordion.Collapse>
                             </Card>
-
                         </Accordion>
+                        <CreateComment id={_id} updateWall={updateWall} />
 
 
-                        {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => deleteButton(_id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
 
                     </Card.Footer>
-                    <Card.Text>{comments.content}</Card.Text>
                 </Card.Body>
             </Card>
         </Col>
+
     )
 }
 

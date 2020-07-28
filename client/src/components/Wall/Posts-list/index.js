@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import PostsService from '../../../service/PostsService'
 
 
-import PostCard from './Post-card'
-import PostForm from './../Post-form'
+import PostCard from '../Post-Card'
+import CreatePost from '../Create-post'
+import EditPost from '../Edit-post'
+
+
+
 import SearchBar from '../Autocomplete'
 
 import Container from 'react-bootstrap/Container'
@@ -23,7 +27,8 @@ class PostsWall extends Component {
         this.state = {
             posts: [],
             showModal: false,
-            post:[]
+            showEditionModal: false
+     
         }
         this.postsService = new PostsService()
     }
@@ -54,6 +59,20 @@ class PostsWall extends Component {
             .catch(err => console.log('muestrame el error', err))
 
     }
+    handleEditionModal = status => this.setState({ showEditionModal: status })
+
+    handleEdition = () => {
+        this.handleEditionModal(false)
+        this.updateWall()
+    }
+
+
+    // editPostButton = (id) => {
+    //     this.postsService
+    //         .editPosts(id)
+    //         .then(response => this.setState({ posts: response.data }))
+    //         .catch(err => console.log('muestrame el error', err))
+    // }
 
     // filterPosts = (tags) => {
     //     this.postsService
@@ -63,10 +82,9 @@ class PostsWall extends Component {
     // }
 
 
-    commentPost = (id) => {
-        console.log('traza entra', id);
+    editPostButton = (_id) => {
         this.postsService
-            .getOnePost(id)
+            .getOnePost(_id)
             .then(response => this.setState({ post: response.data }))
             .catch(err => console.log('muestrame el error', err))
     }
@@ -74,7 +92,7 @@ class PostsWall extends Component {
 
 
     render() {
-        console.log('traza titulo',this.state.post );
+        // console.log('traza', this.state.posts.map(elm => elm._id));
         return (
 
             <>
@@ -92,16 +110,30 @@ class PostsWall extends Component {
                     }
                     <SearchBar />
                     <Row>
-                        {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm} deleteButton={this.deletePostButton} commentPost={this.commentPost} loggedInUser={this.props.loggedInUser} />)}
+                        {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm}
+                            editPostButton={this.editPostButton}
+                            handleEditionModal={this.handleEditionModal}
+                            deleteButton={this.deletePostButton}
+                            commentPost={this.commentPost}
+                            updateWall={this.updateWall}
+                            loggedInUser={this.props.loggedInUser} />)}
                     </Row>
                 </Container>
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
 
-                        <PostForm handleWall={this.handleWall} />
+                        <CreatePost handleWall={this.handleWall} />
 
                     </Modal.Body>
                 </Modal>
+                <Modal size="lg" show={this.state.showEditionModal} onHide={() => this.handleEditionModal(false)}>
+                    <Modal.Body>
+            
+                        <EditPost handleWall={this.handleEdition} />
+
+                    </Modal.Body>
+                </Modal>
+                
             </>
         )
     }

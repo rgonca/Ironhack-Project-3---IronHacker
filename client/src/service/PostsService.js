@@ -13,6 +13,7 @@ export default class PostsService {
     getOnePost = id => this.service.get(`/getOnePost/${id}`)
     createPost = post => this.service.post(`/newPost`, post)
     filterPosts = tags => this.service.get(`/postByTags/${tags}`)
+    editPosts = id => this.service.patch(`/${id}`)
     deletePost = id => this.service.delete(`/${id}`)
     getAllUsers = () => this.service.get('/getAllUsers')
     getOneUser = id => this.service.get(`/getOneUser/${id}`)

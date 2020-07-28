@@ -29,7 +29,7 @@ class UsersDirectory extends Component {
             <>
                 <h1>The Directory</h1>
                 <Row >
-                    {this.state.users.map(elm => <UserCard key={elm._id} {...elm}  loggedInUser={this.props.loggedInUser} />)}
+                    {this.state.users.map(elm => <UserCard key={elm._id} {...elm} loggedInUser={this.props.loggedInUser} />)}
                 </Row>
             </>
         )

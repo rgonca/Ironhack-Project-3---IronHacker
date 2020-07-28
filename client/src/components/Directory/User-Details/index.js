@@ -16,6 +16,7 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Image from 'react-bootstrap/Image'
+import Spinner from 'react-bootstrap/Spinner'
 import './../../pages/profile/profile.css'
 
 class UserDetails extends Component {
@@ -49,9 +50,8 @@ class UserDetails extends Component {
     }
 
     render() {
-        console.log('traza id', this.props.match.params.user_id);
         return (
-            !this.state.userDetails ? <h3>Wait for it...</h3> :
+            !this.state.userDetails ? <><Spinner animation="border" size="sm" /><Spinner animation="border" /> </>:
                 <>
                     <Container className="profile">
 

@@ -90,7 +90,6 @@ class EditionForm extends Component {
     }
 
     render() {
-        console.log('traza id dayan', this.props.setTheUser);
         return (
             <>
                 <h3>Edit Profile</h3>

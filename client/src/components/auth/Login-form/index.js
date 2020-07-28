@@ -33,8 +33,8 @@ class LoginForm extends Component {
             .login(this.state)
             .then(response => {
                 this.props.setTheUser(response.data)
-                this.props.handleToast(true, 'Sesión inciada')
-                this.props.history.push("/profile")
+                this.props.handleToast(true, 'Ironhacker')
+                this.props.history.push("/wall")
             })
             .catch(err => console.log(err))
     }
