@@ -47,7 +47,7 @@ class EditionForm extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
         this.authService
-            .editUser(this.state, this.props.id)
+            .editUser(this.props.id, this.state) //orden cambiado
             .then((response) => this.props.setTheUser(response.data))
             .catch(err => console.log(err))
         this.props.closeModal()
@@ -90,7 +90,7 @@ class EditionForm extends Component {
     }
 
     render() {
-
+        console.log('traza id dayan', this.props.setTheUser);
         return (
             <>
                 <h3>Edit Profile</h3>

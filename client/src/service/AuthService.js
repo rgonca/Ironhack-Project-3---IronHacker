@@ -16,6 +16,6 @@ export default class AuthService {
     logout = () => this.service.post('/logout')
     isLoggedIn = () => this.service.get('/loggedin')
     getUser = (id) => this.service.get(`/users/${id}`)
-    editUser = (credentials, id) => this.service.patch(`/users/${id}`, credentials)
+    editUser = (id, credentials) => this.service.patch(`/users/${id}`, credentials)//fue modificado
 
 }

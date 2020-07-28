@@ -61,6 +61,25 @@ router.delete('/:post_id', (req, res, next) => {
         .catch(err => next(new Error(err)))
 
 })
+//Edits one post--->por probar
+router.patch('/:post_id', (req, res, next) => {
+
+    const editableFields = ['content']
+    const fields = _.pick(req.body, editableFields)
+    const postId = req.params.post_id
+    if (!req.isAuthenticated()) {
+        res.status(401).json({ message: 'Unauthorized' })
+        return;
+    }
+    console.log('traza el usuario', req.params);
+    // if (req.user.role !== 'ADMIN' && req.user.id !== req.body.owner) {
+    //     res.status(403).json({ message: 'Forbidden' })
+    //     return;
+    // }
+    Post.findByIdAndUpdate(postId, { $set: fields }, { new: true })
+        .then((data) => res.status(200).json(data))
+        .catch((err) => console.log(err))
+})
 //Selects posts by tags
 router.get('/postByTags/:tags', (req, res, next) => {
 
@@ -89,7 +108,7 @@ router.post('/commentToPost/:post_id', (req, res, next) => {
 
 })
 //Deletes a Comment
-router.delete('/comments/:comment_id', (req, res, next) => {
+router.delete('/:comment_id', (req, res, next) => {
     //hacer middleware para chequear usuario
 
     Comment.findById(req.params.comment_id)
@@ -103,6 +122,12 @@ router.delete('/comments/:comment_id', (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(new Error(err)))
 
+})
+//Edits one Comment--->por probar
+router.patch('/:comment_id', (req, res, next) => {
+    Comment.findByIdAndUpdate(req.params.post_id)
+        .then((data) => res.status(200).json(data))
+        .catch((err) => console.log(err))
 })
 
 // router.get('/:post_id/getallcomments', (req, res, next) => {

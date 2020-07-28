@@ -17,8 +17,9 @@ import './Post-card.css'
 
 
 
-const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, commentPost }) => {
+const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, commentPost,  }) => {
 
+    console.log('traza el post', _id);
     return (
 
         <Col md={8}>
@@ -46,13 +47,13 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                             <Card>
                                 <Card.Header>
 
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                    <Accordion.Toggle as={Button} onClick={() => commentPost(_id)} variant="link" eventKey="0">
                                         Add a comment
                                 </Accordion.Toggle>
                                 </Card.Header>
-                                <Accordion.Collapse eventKey="1">
+                                <Accordion.Collapse eventKey="0">
                                     <Card.Body>
-                                        <CommentForm onEvent={() => commentPost(_id)} />
+                                        <CommentForm id={_id} />
                                     </Card.Body>
                                 </Accordion.Collapse>
                             </Card>

@@ -22,7 +22,8 @@ class PostsWall extends Component {
         super(props)
         this.state = {
             posts: [],
-            showModal: false
+            showModal: false,
+            post:[]
         }
         this.postsService = new PostsService()
     }
@@ -62,17 +63,18 @@ class PostsWall extends Component {
     // }
 
 
-    // commentPost = (id) => {
-    //     this.postsService
-    //         .getOnePost(id)
-    //         .then(response => this.setState({ posts: response.data }))
-    //         .catch(err => console.log('muestrame el error', err))
-    // }
+    commentPost = (id) => {
+        console.log('traza entra', id);
+        this.postsService
+            .getOnePost(id)
+            .then(response => this.setState({ post: response.data }))
+            .catch(err => console.log('muestrame el error', err))
+    }
 
 
 
     render() {
-        console.log(this.props.loggedInUser);
+        console.log('traza titulo',this.state.post );
         return (
 
             <>
@@ -90,7 +92,7 @@ class PostsWall extends Component {
                     }
                     <SearchBar />
                     <Row>
-                        {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm} deleteButton={this.deletePostButton} loggedInUser={this.props.loggedInUser} />)}
+                        {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm} deleteButton={this.deletePostButton} commentPost={this.commentPost} loggedInUser={this.props.loggedInUser} />)}
                     </Row>
                 </Container>
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>

@@ -24,7 +24,7 @@ class UserDetails extends Component {
         this.state = {
             userDetails: undefined,
             showModal: false,
-
+            // id: this.props.match.params.user_id
 
         }
         this.postsService = new PostsService()
@@ -49,7 +49,7 @@ class UserDetails extends Component {
     }
 
     render() {
-
+        console.log('traza id', this.props.match.params.user_id);
         return (
             !this.state.userDetails ? <h3>Wait for it...</h3> :
                 <>
@@ -58,7 +58,7 @@ class UserDetails extends Component {
                         <Image src={this.state.userDetails.avatarUrl} alt="Profile Picture" rounded className='profilePicture'/>
                         <h1>{this.state.userDetails.name} {this.state.userDetails.surname}</h1>
                         {
-                            this.props.loggedInUser.role === 'ADMIN' && <Button onClick={() => this.handleModal()} variant="dark" size="sm" style={{ marginBottom: '20px' }}><FontAwesomeIcon icon={faUserEdit} /></Button>
+                            this.props.loggedInUser.role === 'ADMIN' && <Button onClick={() => this.handleModal()}  variant="dark" size="sm" style={{ marginBottom: '20px' }}><FontAwesomeIcon icon={faUserEdit} /></Button>
                         }
                         <hr></hr>
 
@@ -114,6 +114,7 @@ class UserDetails extends Component {
                                 {...this.state.userDetails}
                                 setTheUser={this.props.setTheUser}
                                 closeModal={this.onHide}
+                                id={this.props.match.params.user_id}
                             /> : null}
                         </Modal.Body>
                     </Modal>

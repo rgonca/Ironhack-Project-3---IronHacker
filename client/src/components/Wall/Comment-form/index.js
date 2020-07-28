@@ -21,12 +21,12 @@ class CommentForm extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
         this.postsService
-            .commentToPost( this.state)
+            .commentToPost( this.props.id, this.state)
             .then(response => this.setState(response.data ))
             .catch(err => console.log(err))
     }
     render() {
-        console.log('traza', this.props._id)
+        console.log('traza comentario', this.props.id)
         return (
             <>
                 <Form onSubmit={this.handleFormSubmit}>
