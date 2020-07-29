@@ -34,7 +34,6 @@ router.post('/newPost', (req, res, next) => {
         return;
     }
     const { content, tags, createdAt, comments } = req.body
-console.log('traza las tags', req.body);
     Post.create({
         owner: req.user.id,
         content,
@@ -43,7 +42,7 @@ console.log('traza las tags', req.body);
         comments
     })
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => next(err))
 })
 //deletes one post
 router.delete('/:post_id', (req, res, next) => {
@@ -62,7 +61,7 @@ router.delete('/:post_id', (req, res, next) => {
             post.remove()
         })
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => next(err))
 
 })
 //Edits one post
@@ -75,21 +74,22 @@ router.patch('/:post_id', (req, res, next) => {
         res.status(401).json({ message: 'Unauthorized' })
         return;
     }
-    console.log('traza el usuario', req.params);
     // if (req.user.role !== 'ADMIN' && req.user.id !== req.body.owner) {
     //     res.status(403).json({ message: 'Forbidden' })
     //     return;
     // }
     Post.findByIdAndUpdate(postId, { $set: fields }, { new: true })
         .then((data) => res.status(200).json(data))
-        .catch((err) => console.log(err))
+        .catch(err => next(err))
 })
 //Selects posts by tags
-router.get('/postByTags/:tags', (req, res, next) => {
-
-    Post.find({ tags: { $eq: req.params.tags } })
+router.get('/postByTags', (req, res, next) => {
+    
+    const tags = req.query.tags.split(',')
+    console.log('traza busqueda', JSON.stringify(req.query.tags, null, 2))
+    Post.find({ tags: tags })
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => next(err))
 
 })
 
@@ -101,14 +101,14 @@ router.post('/commentToPost/:post_id', (req, res, next) => {
         owner: req.user.id,
         content,
         createdAt: moment(createdAt).format('MMMM Do YYYY'),
-    }) 
+    })
         .then(result => Post.findByIdAndUpdate(postId, {
             $push: {
                 "comments": result._id
             }
         }, { new: true, upsert: true }))
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => next(err))
 
 })
 //Deletes a Comment
@@ -124,14 +124,14 @@ router.delete('/comment/:comment_id', (req, res, next) => {
             return comment.remove()
         })
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => next(err))
 
 })
 //Edits one Comment--->por probar
 router.patch('/:comment_id', (req, res, next) => {
     Comment.findByIdAndUpdate(req.params.post_id)
         .then((data) => res.status(200).json(data))
-        .catch((err) => console.log(err))
+        .catch(err => next(err))
 })
 
 // router.get('/:post_id/getallcomments', (req, res, next) => {
