@@ -27,6 +27,8 @@ class PostsWall extends Component {
             posts: [],
             showModal: false,
             showEditionModal: false,
+            isFiltered: false,
+            tags: [],
             post: {},
             isPostViewOn: false,
             sortValue: '',
@@ -36,20 +38,21 @@ class PostsWall extends Component {
     }
 
     componentDidMount = () => { this.updateWall() }
-
+    //bring all the posts
     updateWall = () => {
         this.postsService
             .getAllPosts()
             .then(response => this.setState({ posts: response.data }))
             .catch(err => console.log('muestrame el error', err))
     }
+    //handle creation modal
     handleModal = status => this.setState({ showModal: status })
 
     handleWall = () => {
         this.handleModal(false)
         this.updateWall()
     }
-
+    //delete posts
     deletePostButton = (id) => {
         this.postsService
             .deletePost(id)
@@ -61,29 +64,39 @@ class PostsWall extends Component {
             .catch(err => console.log('muestrame el error', err))
 
     }
+    //handle edition modal
     handleEditionModal = status => this.setState({ showEditionModal: status })
 
     handleEdition = () => {
         this.handleEditionModal(false)
         this.updateWall()
     }
+    //filter the posts by tags
+    changeFilterState = state => this.setState({ isFiltered: state })
 
-    filterPosts = (tags) => {
+    filterPosts = tag => {
+        console.log('traza tag', tag);
         this.postsService
-            .filterPosts(tags)
-            .then(response => this.updateWall(response))
+
+            .filterPosts(tag)
+            
+            .then(() => {
+                const tags = this.state.tags.map()
+            })
+            .then(response => {
+                const filteredPosts = this.state.posts.filter(posts => posts.tags === tag )
+                this.setState({ posts: filteredPosts })
+            })
             .catch(err => console.log('muestrame el error', err))
     }
-
-
+    //edit posts
     editPostButton = (_id) => {
         this.postsService
             .getOnePost(_id)
             .then(response => this.setState({ post: response.data }))
             .catch(err => console.log('muestrame el error', err))
     }
-
-
+    //delete comments on posts
     deleteCommentButton = (id) => {
         this.postsService
             .deleteComment(id)
@@ -98,7 +111,8 @@ class PostsWall extends Component {
 
 
     render() {
-        console.log('traza', this.state.posts._id);
+        console.log('traza posts', this.state.posts);
+        console.log('traza esta filtrando', this.state.isFiltered);
         return (
 
             <>
@@ -106,14 +120,14 @@ class PostsWall extends Component {
 
                     <h1>The Wall</h1>
 
-                    <SearchBar /> 
+                    <SearchBar filterPosts={this.filterPosts} changeFilterState={this.changeFilterState} />
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
                     }
                     <Row>
                         {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm}
-                            
+
                             editPostButton={this.editPostButton}
                             handleEditionModal={this.handleEditionModal}
                             deleteButton={this.deletePostButton}
@@ -133,8 +147,7 @@ class PostsWall extends Component {
                 <Modal size="lg" show={this.state.showEditionModal} onHide={() => this.handleEditionModal(false)}>
                     <Modal.Body>
 
-                        <EditPost handleWall={this.handleEdition} _id={this.state.posts._id} />
-
+                        <EditPost handleWall={this.handleEdition} id={this.state.post._id} posts={this.state.posts} />
                     </Modal.Body>
                 </Modal>
 

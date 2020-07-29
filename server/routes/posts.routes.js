@@ -61,10 +61,10 @@ router.delete('/:post_id', (req, res, next) => {
         .catch(err => next(new Error(err)))
 
 })
-//Edits one post--->por probar
+//Edits one post
 router.patch('/:post_id', (req, res, next) => {
 
-    const editableFields = ['content']
+    const editableFields = ['content', 'tags', 'createdAt']
     const fields = _.pick(req.body, editableFields)
     const postId = req.params.post_id
     if (!req.isAuthenticated()) {
@@ -141,7 +141,6 @@ router.patch('/:comment_id', (req, res, next) => {
 router.get('/getAllUsers', (req, res, next) => {
 
     User.find()
-        // .populate('owner', ['name', 'surname', 'avatarUrl'])
         .then(response => res.json(response))
         .catch(err => next(err))
 })

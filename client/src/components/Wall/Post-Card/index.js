@@ -48,7 +48,6 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                     <ListGroup.Item key={tags}>{tags}</ListGroup.Item>
                                 ))}
                             </ListGroup>
-
                         ))}
                         <Accordion>
                             <Card>
@@ -91,8 +90,6 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                             </Card>
                         </Accordion>
                         <CreateComment id={_id} updateWall={updateWall} />
-
-
 
                     </Card.Footer>
                 </Card.Body>

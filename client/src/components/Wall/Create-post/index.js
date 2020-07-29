@@ -33,10 +33,10 @@ class CreatePost extends Component {
         this.setState({ tags: tags })
     }
 
-    handleFormSubmit = e => {
+    handleFormSubmit = (e, post) => {
         e.preventDefault()
         this.postsService
-            .createPost(this.state)
+            .createPost(post)
             .then(() => this.props.handleWall())
             .catch(err => console.log(err))
     }
@@ -46,8 +46,7 @@ class CreatePost extends Component {
             <>
                 <h1>New post</h1>
                 <hr></hr>
-                <PostForm {...this.state} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} addItemsToArray={this.addItemsToArray}/>
-            </>
+                <PostForm {...this.state} handleFormSubmit={this.handleFormSubmit} addItemsToArray={this.addItemsToArray} />            </>
         )
     }
 }
