@@ -5,10 +5,9 @@ import PostsService from '../../../service/PostsService'
 import PostCard from '../Post-Card'
 import CreatePost from '../Create-post'
 import EditPost from '../Edit-post'
+import SearchBar from '../Searchbar'
 
 
-
-import SearchBar from '../Autocomplete'
 
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
@@ -27,8 +26,11 @@ class PostsWall extends Component {
         this.state = {
             posts: [],
             showModal: false,
-            showEditionModal: false
-     
+            showEditionModal: false,
+            post: {},
+            isPostViewOn: false,
+            sortValue: '',
+            inputValue: ''
         }
         this.postsService = new PostsService()
     }
@@ -66,20 +68,12 @@ class PostsWall extends Component {
         this.updateWall()
     }
 
-
-    // editPostButton = (id) => {
-    //     this.postsService
-    //         .editPosts(id)
-    //         .then(response => this.setState({ posts: response.data }))
-    //         .catch(err => console.log('muestrame el error', err))
-    // }
-
-    // filterPosts = (tags) => {
-    //     this.postsService
-    //         .filterPosts(tags)
-    //         .then(response => this.updateWall(response))
-    //         .catch(err => console.log('muestrame el error', err))
-    // }
+    filterPosts = (tags) => {
+        this.postsService
+            .filterPosts(tags)
+            .then(response => this.updateWall(response))
+            .catch(err => console.log('muestrame el error', err))
+    }
 
 
     editPostButton = (_id) => {
@@ -90,9 +84,21 @@ class PostsWall extends Component {
     }
 
 
+    deleteCommentButton = (id) => {
+        this.postsService
+            .deleteComment(id)
+            .then(response => {
+                const deletion = this.state.posts.comments.filter(comment => comment._id !== id)
+                this.setState({ posts: deletion })
+            })
+            .catch(err => console.log('muestrame el error', err))
+
+    }
+
+
 
     render() {
-        // console.log('traza', this.state.posts.map(elm => elm._id));
+        console.log('traza', this.state.posts._id);
         return (
 
             <>
@@ -100,21 +106,19 @@ class PostsWall extends Component {
 
                     <h1>The Wall</h1>
 
-                    <Form inline filterPosts={this.filterPosts}>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
+                    <SearchBar /> 
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
                     }
-                    <SearchBar />
                     <Row>
                         {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm}
+                            
                             editPostButton={this.editPostButton}
                             handleEditionModal={this.handleEditionModal}
                             deleteButton={this.deletePostButton}
                             commentPost={this.commentPost}
+                            deleteCommentButton={this.deleteCommentButton}
                             updateWall={this.updateWall}
                             loggedInUser={this.props.loggedInUser} />)}
                     </Row>
@@ -128,12 +132,12 @@ class PostsWall extends Component {
                 </Modal>
                 <Modal size="lg" show={this.state.showEditionModal} onHide={() => this.handleEditionModal(false)}>
                     <Modal.Body>
-            
-                        <EditPost handleWall={this.handleEdition} />
+
+                        <EditPost handleWall={this.handleEdition} _id={this.state.posts._id} />
 
                     </Modal.Body>
                 </Modal>
-                
+
             </>
         )
     }

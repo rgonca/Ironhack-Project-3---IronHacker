@@ -10,7 +10,7 @@ class EditPost extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: this.props.id,
+            id: this.props._id,
             content: this.props.content,
             createdAt: this.props.createdAt,
             tags:[],

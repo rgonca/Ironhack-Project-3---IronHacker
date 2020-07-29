@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import CreateComment from '../Create-comment'
 import EditPost from '../Edit-post'
-import Comments from './comments'
 
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
@@ -18,7 +17,7 @@ import './Post-card.css'
 
 
 
-const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, updateWall, handleEditionModal, editPostButton }) => {
+const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, updateWall, handleEditionModal, editPostButton, deleteCommentButton }) => {
 
     return (
 
@@ -26,7 +25,10 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
             <Card className="post-card">
                 <Card.Header>
                     {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => deleteButton(_id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
-                    <div onClick={(() => handleEditionModal(true)) }  ><FontAwesomeIcon icon={faEye} size="lg" /></div>
+                    <div onClick={() => {
+                        editPostButton(_id)
+                        handleEditionModal(true)
+                    }} ><FontAwesomeIcon icon={faEye} size="lg" /></div>
 
                 </Card.Header>
                 <Card.Body>
@@ -67,6 +69,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                                                     <Card.Title>
                                                                         {comments.owner}
                                                                     </Card.Title>
+                                                                    <div onClick={() => deleteCommentButton(comments._id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>
                                                                 </Link></Card.Header>
                                                                 <Card.Body>
                                                                     <blockquote className="blockquote mb-0">

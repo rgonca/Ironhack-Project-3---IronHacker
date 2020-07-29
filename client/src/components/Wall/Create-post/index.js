@@ -41,6 +41,7 @@ class CreatePost extends Component {
             .catch(err => console.log(err))
     }
     render() {
+        console.log('traza crear',this.state );
         return (
             <>
                 <h1>New post</h1>

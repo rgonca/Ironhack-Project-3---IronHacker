@@ -15,7 +15,7 @@ router.get('/getAllPosts', (req, res, next) => {
 
     Post.find()
         .populate('owner', ['name', 'surname', 'avatarUrl'])
-        .populate('comments', ['owner', ['name'], 'content', 'createdAt'])
+        .populate('comments', ['_id', 'owner', ['name'], 'content', 'createdAt'])
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -108,7 +108,7 @@ router.post('/commentToPost/:post_id', (req, res, next) => {
 
 })
 //Deletes a Comment
-router.delete('/:comment_id', (req, res, next) => {
+router.delete('/comment/:comment_id', (req, res, next) => {
     //hacer middleware para chequear usuario
 
     Comment.findById(req.params.comment_id)
