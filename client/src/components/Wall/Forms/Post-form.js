@@ -9,21 +9,31 @@ class postForm extends Component {
         this.state = {
             id: post ? post._id : '',
             content: post ? post.content : '',
+            tags: post ? post.tags : [],
         }
     }
     componentDidUpdate(prevProps) {
         if (prevProps.post && Object.keys(prevProps.post).length == 0 && Object.keys(this.props.post).length > 0) {
-            const { _id, content } = this.props.post
-            this.setState({ id: _id, content });
+            const { _id, content, tags } = this.props.post
+            this.setState({ id: _id, content, tags });
         }
+    }
+    AddItemsToArray = e => {
+
+        const tags = this.state.tags
+        let index
+        
+        e.target.checked ? tags.push(e.target.value.toString()) : index = tags.indexOf(e.target.value) && tags.splice(index, 1)
+
+        this.setState({ tags: tags })
     }
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({ [name]: value })
     }
     render() {
-        console.log('traza 3', this.props.post);
-        console.log('traza 4', this.state.post);
+        console.log('traza 3', this.props);
+        console.log('traza 4', this.state);
         return (
             <>
                 <Form onSubmit={(e) => this.props.handleFormSubmit(e, this.state)}>
@@ -33,14 +43,15 @@ class postForm extends Component {
                         <Form.Text className="text-muted">Every time you make a typo, the errorist win.</Form.Text>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Check onChange={this.props.addItemsToArray} name="WebDev" type="checkbox" value="WebDev" label="WebDev" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="UXUI" type="Checkbox" value="UXUI" label="UX/UI" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="Data" type="checkbox" value="Data" label="Data" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="Jobs" type="checkbox" value="Jobs" label="Jobs" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="Projects" type="checkbox" value="Projects" label="Projects" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="Offers" type="checkbox" value="Offers" label="Offers" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="Requests" type="checkbox" value="Requests" label="Requests" />
-                        <Form.Check onChange={this.props.addItemsToArray} name="Misc" type="Checkbox" value="Misc" label="Misc" />
+
+                        <Form.Check onChange={this.AddItemsToArray} name="WebDev" type="checkbox" value="WebDev" label="WebDev" />
+                        <Form.Check onChange={this.AddItemsToArray} name="UXUI" type="Checkbox" value="UXUI" label="UX/UI" />
+                        <Form.Check onChange={this.AddItemsToArray} name="Data" type="checkbox" value="Data" label="Data" />
+                        <Form.Check onChange={this.AddItemsToArray} name="Jobs" type="checkbox" value="Jobs" label="Jobs" />
+                        <Form.Check onChange={this.AddItemsToArray} name="Projects" type="checkbox" value="Projects" label="Projects" />
+                        <Form.Check onChange={this.AddItemsToArray} name="Offers" type="checkbox" value="Offers" label="Offers" />
+                        <Form.Check onChange={this.AddItemsToArray} name="Requests" type="checkbox" value="Requests" label="Requests" />
+                        <Form.Check onChange={this.AddItemsToArray} name="Misc" type="Checkbox" value="Misc" label="Misc" />
                     </Form.Group>
                     <Button variant="dark" type="submit">Submit</Button>
                 </Form>

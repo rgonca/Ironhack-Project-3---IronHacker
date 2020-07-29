@@ -34,7 +34,7 @@ router.post('/newPost', (req, res, next) => {
         return;
     }
     const { content, tags, createdAt, comments } = req.body
-
+console.log('traza las tags', req.body);
     Post.create({
         owner: req.user.id,
         content,
@@ -51,11 +51,15 @@ router.delete('/:post_id', (req, res, next) => {
 
     Post.findById(req.params.post_id)
         .then(post => {
-            if (req.user.role !== 'ADMIN' && req.user.id !== post.owner) {
-                res.status(403).json({ message: 'Forbidden' })
-                return
-            }
-            return post.remove()
+            console.log('elusuario', req.user.id);
+            console.log('eldueño', post.owner._id);
+
+            // if (req.user.role !== 'ADMIN' && req.user.id !== post.owner._id) {
+            //     res.status(403).json({ message: 'Forbidden' })
+            //     return
+            // }
+            // return
+            post.remove()
         })
         .then(response => res.json(response))
         .catch(err => next(new Error(err)))

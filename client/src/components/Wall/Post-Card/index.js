@@ -12,7 +12,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faEye, faEdit } from '@fortawesome/free-solid-svg-icons'
 import './Post-card.css'
 
 
@@ -25,10 +25,11 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
             <Card className="post-card">
                 <Card.Header>
                     {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => deleteButton(_id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
-                    <div onClick={() => {
+                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => {
                         editPostButton(_id)
                         handleEditionModal(true)
-                    }} ><FontAwesomeIcon icon={faEye} size="lg" /></div>
+                    }} ><FontAwesomeIcon icon={faEdit} size="lg" /></div>}
+
 
                 </Card.Header>
                 <Card.Body>

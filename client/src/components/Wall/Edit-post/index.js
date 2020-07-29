@@ -9,7 +9,7 @@ class EditPost extends Component {
             id: this.props.id,
             content: this.props.content,
             createdAt: this.props.createdAt,
-            tags: [],
+            tags: this.props.tags,
             post: null,
             posts: this.props.posts
         }
@@ -21,12 +21,6 @@ class EditPost extends Component {
         this.setState({ [name]: value })
     }
 
-    addItemsToArray = e => {
-        const tags = this.state.tags
-        let index
-        e.target.checked ? tags.push(e.target.value.toString()) : index = tags.indexOf(e.target.value) && tags.splice(index, 1)
-        this.setState({ tags: tags })
-    }
 
     handleFormSubmit = (e, post) => {
         e.preventDefault()
@@ -44,7 +38,7 @@ class EditPost extends Component {
             <>
                 <h1>EditPost</h1>
                 <hr></hr>
-                <PostForm {...this.state} post={post} handleFormSubmit={this.handleFormSubmit} addItemsToArray={this.addItemsToArray} />
+                <PostForm {...this.state} post={post} handleFormSubmit={this.handleFormSubmit}/>
             </>
         )
     }
