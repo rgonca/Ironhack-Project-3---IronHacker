@@ -14,10 +14,10 @@ router.get('/getAllPosts', (req, res, next) => {
 
     Post.find()
         .populate('owner', ['name', 'surname', 'avatarUrl'])
-        // .populate({ path: 'comments', populate: {
-        //         path: 'owner', model: 'User'
-        //     }, 
-        // })
+        .populate({ path: 'comments', populate: {
+                path: 'owner', model: 'User'
+            }, 
+        })
         // .populate('comments', ['_id', 'content', 'createdAt'])
     
         .then(response => res.json(response))
