@@ -53,7 +53,7 @@ class SignupForm extends Component {
                 this.props.handleToast(true, 'Signup Complete')
                 this.props.history.push('/profile')
             })
-            .catch(err => console.log(err.response.data.message))   // Error handling yay!
+            .catch(err => console.log(err))   // Error handling yay!
     }
 
     render() {
