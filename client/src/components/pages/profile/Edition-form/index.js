@@ -19,7 +19,7 @@ class EditionForm extends Component {
             githubProfile: this.props.githubProfile,
             projectTitle: this.props.projectTitle,
             projectDescription: this.props.projectDescription,
-            projectLink: this.props.projectDescription,
+            projectLink: this.props.projectLink,
             warName: this.props.warName,
             funFact: this.props.funFact
         }
@@ -121,6 +121,18 @@ class EditionForm extends Component {
                     <Form.Group>
                         <Form.Label>GitHub</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.githubProfile} name="githubProfile" type="text" />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Are you working on a project? Maybe a great job?... Tell us more</Form.Label>
+                        <Form.Control onChange={this.handleInputChange} value={this.state.projectTitle} name="projectTitle" type="text" placeholder="Your project title" />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label></Form.Label>
+                        <Form.Control onChange={this.handleInputChange} value={this.state.projectDescription} name="projectDescription" as="textarea" rows="3" placeholder="Tell us more..." />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label></Form.Label>
+                        <Form.Control onChange={this.handleInputChange} value={this.state.projectLink} name="projectLink" type="text" placeholder="Paste the link here"/>
                     </Form.Group>
 
                     {this.printProtectedFields()}

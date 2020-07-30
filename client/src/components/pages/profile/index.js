@@ -84,6 +84,9 @@ class Profile extends Component {
                     <hr></hr>
                     <h3>{this.props.loggedInUser.projectTitle}</h3>
                     <p>{this.props.loggedInUser.projectDescription}</p>
+                    <Link>
+                        <a target='_blank' href={this.props.loggedInUser.projectLink}>{this.props.loggedInUser.projectLink}</a>
+                    </Link>
 
                     <hr></hr>
 

@@ -10,3 +10,4 @@ module.exports = mongoose
 
 // DB_LOCAL = mongodb://localhost/IronHacker
 // DB_REMOTE = mongodb + srv://rgonca:Nomejodas183@cluster0.p5uzg.mongodb.net/IronHacker?retryWrites=true&w=majority
+//http://localhost:3000

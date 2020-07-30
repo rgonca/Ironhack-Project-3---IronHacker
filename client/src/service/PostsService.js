@@ -5,7 +5,7 @@ export default class PostsService {
     constructor() {
 
         this.service = axios.create({
-            baseURL: 'http://localhost:5000/api/posts',
+            baseURL: `${process.env.REACT_APP_API_URL}/posts`,
             withCredentials: true
         })
     }
@@ -20,3 +20,4 @@ export default class PostsService {
     commentToPost = (id, comment) => this.service.post(`/commentToPost/${id}`, comment)
     deleteComment = id => this.service.delete(`/comment/${id}`)
 }
+//'http://localhost:5000/api/posts'
