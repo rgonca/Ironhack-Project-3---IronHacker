@@ -5,7 +5,7 @@ const logger = require('morgan')
 
 const cors = require('cors')
 
-const whitelist = [`${process.env.DOMAIN}`, "https://ih-ironhacker-app.herokuapp.com", "https://ih-ironhacker-app.herokuapp.com/", 'http://localhost:3000', 'http://localhost:5000']
+const whitelist = [`${process.env.DOMAIN}`, "https://ih-ironhacker-app.herokuapp.com/api", "https://ih-ironhacker-app.herokuapp.com/api", 'http://localhost:3000', 'http://localhost:5000']
 const corsOptions = {
     origin: (origin, cb) => {
         const originIsWhitelisted = whitelist.includes(origin)
