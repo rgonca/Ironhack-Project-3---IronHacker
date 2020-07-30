@@ -35,3 +35,12 @@ POSTS ROUTES:
 | -------- | ------------------  | ----------------------- | ------------------------ | ---------------------- | ----------------------------------- |
 | Endpoint | /postByTags         | /commentToPost/:post_id | /comment/:comment_id     | /getAllUsers           | //getOneUser/:user_id'              |
 | Action   | Filtes posts by tags| Comments one post       |Deletes one comment       | Deploys list of users  | Selects one user from the list      |
+
+CLOUDINARY ROUTES:
+
+| Method   | #POST                  |
+| -------- | ---------------------- |
+| Endpoint | /upload                |
+| Action   | Uploads an image to DB |
+
+
