@@ -29,20 +29,23 @@ class SearchBar extends Component {
         const tags = this.state.tags.slice(0)
         tags.splice(i, 1)
         this.setState({ tags })
+
+        const groupedTags = tags.map(({ name }) => name).join(',')
+        this.props.filterPosts(groupedTags)
+        this.props.updateWall()
     }
 
     onAddition(tag) {
         const tags = [].concat(this.state.tags, tag)
         this.setState({ tags })
 
+        
+        const groupedTags = tags.map(({ name }) => name).join(',')
+        this.props.filterPosts(groupedTags)
 
-        this.props.filterPosts({ tag })
-        const state = { tag } ? true : false
-        this.props.changeFilterState(state)
     }
 
     render() {
-        console.log('traza busqueda', this.state);
         return (
 
             <>

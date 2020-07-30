@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PostsService from '../../../service/PostsService'
+
 import PostForm from '../Forms/Post-form'
 class CreatePost extends Component {
     constructor() {
@@ -22,7 +23,6 @@ class CreatePost extends Component {
             .catch(err => console.log(err))
     }
     render() {
-        console.log('traza crear', this.state);
         return (
             <>
                 <h1>New post</h1>

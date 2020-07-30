@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import CreateComment from '../Create-comment'
-import EditPost from '../Edit-post'
 
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
@@ -45,8 +44,8 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                     <Card.Footer className="text-muted">
                         {['lg'].map((breakpoint, idx) => (
                             <ListGroup className="tags" horizontal={breakpoint} className="my-2" key={idx}>
-                                {tags.map(tags => (
-                                    <ListGroup.Item key={tags}>{tags}</ListGroup.Item>
+                                {tags.map(tag => (
+                                    <ListGroup.Item key={tag}>{tag}</ListGroup.Item>
                                 ))}
                             </ListGroup>
                         ))}
@@ -62,22 +61,22 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                         {
                                             ['lg'].map(idx => (
                                                 <ListGroup>
-                                                    {comments.reverse().map(comments => (
-                                                        <ListGroup.Item key={comments}>
+                                                    {comments.reverse().map(comment => (
+                                                        <ListGroup.Item key={comment._id}>
                                                             <Card>
-                                                                <Card.Header> <Link to={`/user/${comments.owner}`}>
+                                                                <Card.Header> <Link to={`/user/${comment.owner}`}>
                                                                     <Card.Title>
-                                                                        {comments.owner}
+                                                                        {comment.owner}
                                                                     </Card.Title>
-                                                                    <div onClick={() => deleteCommentButton(comments._id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>
+                                                                    <div onClick={() => deleteCommentButton(comment._id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>
                                                                 </Link></Card.Header>
                                                                 <Card.Body>
                                                                     <blockquote className="blockquote mb-0">
                                                                         <p>
-                                                                            {comments.content}
+                                                                            {comment.content}
                                                                         </p>
                                                                         <footer className="blockquote-footer">
-                                                                            {comments.createdAt}
+                                                                            {comment.createdAt}
                                                                         </footer>
                                                                     </blockquote>
                                                                 </Card.Body>

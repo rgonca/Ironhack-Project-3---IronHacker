@@ -32,8 +32,6 @@ class postForm extends Component {
         this.setState({ [name]: value })
     }
     render() {
-        console.log('traza 3', this.props);
-        console.log('traza 4', this.state);
         return (
             <>
                 <Form onSubmit={(e) => this.props.handleFormSubmit(e, this.state)}>

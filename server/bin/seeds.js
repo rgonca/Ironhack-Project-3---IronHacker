@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const dbName = 'IronHacker'
 
-mongoose.connect(`mongodb://localhost/${dbName}`)
+// mongoose.connect(`mongodb://localhost/${dbName}`)
 
+mongoose.connect(`mongodb+srv://rgonca:Nomejodas183@cluster0.p5uzg.mongodb.net/IronHacker`, { useNewUrlParser: true, useUnifiedTopology: true })
 
-// mongoose.connect(`mongodb+srv://${process.env.rgonca}:${process.env.Nomejodas183}@revitalize-oltwc.gcp.mongodb.net/${process.env.IronHacker}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
-// mongoose.connect(`mongodb+srv://${process.env.MONGODBUSER}:${process.env.MONGODBPASSWORD}@revitalize-oltwc.gcp.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect(`mongodb+srv://rgonca:Nomejodas183@cluster0.p5uzg.mongodb.net/IronHacker?authSource=admin&replicaSet=atlas-pp2w79-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`)
+
 const User = require('../models/User.model')
 
 
@@ -13,7 +14,7 @@ const administrator = [
     {
         username: 'admin',
         password: '$2b$10$3cTXPx0ddbLDd6553clmje/FksFNlpGc6BoTVsAHS.0upUbAtcnbK',
-        email: 'masterOfTheApp@overlord.com',
+        email: 'masterOfTheApi@overlord.com',
         name: 'Overlord',
         surname: 'Darklord',
         role: 'ADMIN',
@@ -28,9 +29,9 @@ const administrator = [
 
     },
     {
-        username: 'admin2',
+        username: 'admin1',
         password: '$2b$10$3cTXPx0ddbLDd6553clmje/FksFNlpGc6BoTVsAHS.0upUbAtcnbK',
-        email: 'masterOfTheApp@skynet.com',
+        email: 'masterOfTheAppbaby@skynet.com',
         name: 'Skynet',
         surname: 'datamaster',
         role: 'ADMIN',
@@ -45,7 +46,7 @@ const administrator = [
 
     },
     {
-        username: 'admin1',
+        username: 'admin2',
         password: '$2b$10$3cTXPx0ddbLDd6553clmje/FksFNlpGc6BoTVsAHS.0upUbAtcnbK',
         email: 'iamcharlie@candymountain.com',
         name: 'Charlie',

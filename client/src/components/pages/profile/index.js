@@ -4,7 +4,6 @@ import AuthService from '../../../service/AuthService'
 import EditionForm from './Edition-form'
 
 import { Link } from 'react-router-dom'
-import ShareLink from 'react-linkedin-share-link'
 
 import LinkdinLogo from './linkdinlogo.png'
 import GitHubLogo from './githublogo.png'

@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobeEurope, faUsers, faDoorClosed, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeEurope, faUsers, faDoorClosed } from '@fortawesome/free-solid-svg-icons'
 
 import AuthService from './../../../service/AuthService'
 

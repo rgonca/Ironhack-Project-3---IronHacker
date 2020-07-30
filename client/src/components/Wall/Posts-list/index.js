@@ -10,10 +10,7 @@ import SearchBar from '../Searchbar'
 
 
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
@@ -27,12 +24,11 @@ class PostsWall extends Component {
             posts: [],
             showModal: false,
             showEditionModal: false,
-            isFiltered: false,
-            tags: [],
+            // tags: [],
             post: {},
-            isPostViewOn: false,
-            sortValue: '',
-            inputValue: ''
+            // isPostViewOn: false,
+            // sortValue: '',
+            // inputValue: ''
         }
         this.postsService = new PostsService()
     }
@@ -72,21 +68,13 @@ class PostsWall extends Component {
         this.updateWall()
     }
     //filter the posts by tags
-    changeFilterState = state => this.setState({ isFiltered: state })
 
-    filterPosts = tag => {
-        console.log('traza tag', tag);
+    filterPosts = tags => {
+        console.log('traza el tag', tags);
         this.postsService
 
-            .filterPosts(tag)
-            
-            .then(() => {
-                const tags = this.state.tags.map()
-            })
-            .then(response => {
-                const filteredPosts = this.state.posts.filter(posts => posts.tags === tag )
-                this.setState({ posts: filteredPosts })
-            })
+            .filterPosts(tags)
+            .then(response => this.setState({ posts: response.data }))
             .catch(err => console.log('muestrame el error', err))
     }
     //edit posts
@@ -100,10 +88,11 @@ class PostsWall extends Component {
     deleteCommentButton = (id) => {
         this.postsService
             .deleteComment(id)
-            .then(response => {
-                const deletion = this.state.posts.comments.filter(comment => comment._id !== id)
-                this.setState({ posts: deletion })
-            })
+            // .then(response => {
+            //     const deletion = this.state.posts.comments.filter(comment => comment._id !== id)
+            //     this.setState({ comments: deletion, })
+            // })
+            .then(response => this.updateWall)
             .catch(err => console.log('muestrame el error', err))
 
     }
@@ -112,7 +101,6 @@ class PostsWall extends Component {
 
     render() {
         console.log('traza posts', this.state.posts);
-        console.log('traza esta filtrando', this.state.isFiltered);
         return (
 
             <>
@@ -120,7 +108,7 @@ class PostsWall extends Component {
 
                     <h1>The Wall</h1>
 
-                    <SearchBar filterPosts={this.filterPosts} changeFilterState={this.changeFilterState} />
+                    <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/>
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
@@ -131,7 +119,6 @@ class PostsWall extends Component {
                             editPostButton={this.editPostButton}
                             handleEditionModal={this.handleEditionModal}
                             deleteButton={this.deletePostButton}
-                            commentPost={this.commentPost}
                             deleteCommentButton={this.deleteCommentButton}
                             updateWall={this.updateWall}
                             loggedInUser={this.props.loggedInUser} />)}
