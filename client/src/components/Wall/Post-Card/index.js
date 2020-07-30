@@ -17,7 +17,7 @@ import './Post-card.css'
 
 
 const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, updateWall, handleEditionModal, editPostButton, deleteCommentButton }) => {
-
+    
     return (
 
         <Col md={8}>
@@ -61,7 +61,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                         {
                                             ['lg'].map(idx => (
                                                 <ListGroup>
-                                                    {comments.reverse().map(comment => (
+                                                    {comments.map(comment => (
                                                         <ListGroup.Item key={comment._id}>
                                                             <Card>
                                                                 <Card.Header> <Link to={`/user/${comment.owner}`}>

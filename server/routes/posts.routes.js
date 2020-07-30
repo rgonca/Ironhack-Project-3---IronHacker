@@ -7,7 +7,6 @@ const Post = require('../models/Post.model')
 const User = require('../models/User.model')
 const Comment = require('../models/Comments.model')
 const { response } = require('express')
-const { compact, result } = require('lodash')
 
 // Endpoints
 //Deploy de list of posts
@@ -15,7 +14,8 @@ router.get('/getAllPosts', (req, res, next) => {
 
     Post.find()
         .populate('owner', ['name', 'surname', 'avatarUrl'])
-        .populate('comments', ['_id', 'owner', ['name'], 'content', 'createdAt'])
+        .populate('comments', ['_id', 'owner', 'content', 'createdAt'])
+        .populate('comments.owner', 'name')
         .then(response => res.json(response))
         .catch(err => next(err))
 })
