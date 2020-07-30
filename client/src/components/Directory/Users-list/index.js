@@ -27,7 +27,7 @@ class UsersDirectory extends Component {
     render() {
         return (
             <>
-                <h1>The Directory</h1>
+                <h1 className="directory">The Directory</h1>
                 <Row >
                     {this.state.users.map(elm => <UserCard key={elm._id} {...elm} loggedInUser={this.props.loggedInUser} />)}
                 </Row>

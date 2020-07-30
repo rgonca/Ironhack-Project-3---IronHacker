@@ -1,5 +1,7 @@
 .profile {
     font-family:'Montserrat', sans-serif;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -14,7 +16,7 @@ h1, h2, h3, h4, h5 {
     width: 50px;
 }
 .warName {
-    
+
     display: flex;
     align-items: center;
     align-content: center;
@@ -23,4 +25,9 @@ h1, h2, h3, h4, h5 {
 
 .profilePicture{
     width: 300px;
+    margin-bottom: 20px;
+}
+.profile p {
+    margin-top: 40px;
+    font-size: 1.3em;
 }

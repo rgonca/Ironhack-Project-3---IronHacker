@@ -16,7 +16,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 
-
 class PostsWall extends Component {
     constructor(props) {
         super(props)
@@ -100,14 +99,14 @@ class PostsWall extends Component {
             <>
                 <Container as="main" className="wall">
 
-                    <h1>The Wall</h1>
+                    <h1 className="directory">The Wall</h1>
 
                     {/* <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/> */}
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
                     }
-                    <Row>
+                    <Row className='posts'>
                         {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm}
 
                             editPostButton={this.editPostButton}

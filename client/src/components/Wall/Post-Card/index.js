@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-// import Comments from './comments'
+
 import CreateComment from '../Create-comment'
 
 import Card from 'react-bootstrap/Card'
@@ -23,8 +23,8 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
         <Col md={8}>
             <Card className="post-card">
                 <Card.Header>
-                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => deleteButton(_id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
-                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div onClick={() => {
+                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div className="icon" onClick={() => deleteButton(_id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
+                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== owner._id ? '' : <div className="icon" onClick={() => {
                         editPostButton(_id)
                         handleEditionModal(true)
                     }} ><FontAwesomeIcon icon={faEdit} size="lg" /></div>}
@@ -64,13 +64,14 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                                     {comments.map(comment => (
                                                         <ListGroup.Item key={comment._id} >
                                                             <Card>
-                                                                <Card.Header> <Link to={`/user/${comment.owner._id}`}>
+                                                                <Card.Header>
+                                                                    <Link to={`/user/${comment.owner._id}`}>
                                                                     <Card.Title>
                                                                         <Image className="avatar" src={comment.owner.avatarUrl} />
                                                                         {comment.owner.name} {comment.owner.surname}
                                                                     </Card.Title>
                                                                 </Link>
-                                                                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== comment.owner._id ? '' : <div onClick={() => deleteCommentButton(comment._id)}>
+                                                                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== comment.owner._id ? '' : <div className="icon"  onClick={() => deleteCommentButton(comment._id)}>
                                                                         <FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
                                                                     
                                                                </Card.Header>

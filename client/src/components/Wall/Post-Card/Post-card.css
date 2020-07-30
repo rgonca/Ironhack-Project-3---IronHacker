@@ -4,3 +4,10 @@
 .tags {
     width: 100px;
 }
+.post-card{
+    margin: auto;
+}
+
+.icon {
+    text-align: right;
+}
