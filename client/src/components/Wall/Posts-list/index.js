@@ -88,11 +88,7 @@ class PostsWall extends Component {
     deleteCommentButton = (id) => {
         this.postsService
             .deleteComment(id)
-            // .then(response => {
-            //     const deletion = this.state.posts.comments.filter(comment => comment._id !== id)
-            //     this.setState({ comments: deletion, })
-            // })
-            .then(response => this.updateWall)
+            .then(response => this.updateWall(response))
             .catch(err => console.log('muestrame el error', err))
 
     }

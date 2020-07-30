@@ -64,12 +64,16 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                                     {comments.map(comment => (
                                                         <ListGroup.Item key={comment._id}>
                                                             <Card>
-                                                                <Card.Header> <Link to={`/user/${comment.owner}`}>
+                                                                <Card.Header> <Link to={`/user/${comment.owner._id}`}>
                                                                     <Card.Title>
-                                                                        {comment.owner}
+                                                                        <Image className="avatar" src={comment.owner.avatarUrl} />
+                                                                        {comment.owner.name} {comment.owner.surname}
                                                                     </Card.Title>
-                                                                    <div onClick={() => deleteCommentButton(comment._id)}><FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>
-                                                                </Link></Card.Header>
+                                                                </Link>
+                                                                    {loggedInUser.role !== 'ADMIN' && loggedInUser._id !== comment.owner._id ? '' : <div onClick={() => deleteCommentButton(comment._id)}>
+                                                                        <FontAwesomeIcon icon={faTrashAlt} size="lg" /></div>}
+                                                                    
+                                                               </Card.Header>
                                                                 <Card.Body>
                                                                     <blockquote className="blockquote mb-0">
                                                                         <p>

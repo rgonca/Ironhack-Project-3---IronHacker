@@ -14,7 +14,12 @@ router.get('/getAllPosts', (req, res, next) => {
 
     Post.find()
         .populate('owner', ['name', 'surname', 'avatarUrl'])
-        .populate('comments', ['_id', 'owner', 'content', 'createdAt'])
+        .populate({ path: 'comments', populate: {
+                path: 'owner', model: 'User'
+            }, 
+        })
+        // .populate('comments', ['_id', 'content', 'createdAt'])
+    
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -49,8 +54,7 @@ router.delete('/:post_id', (req, res, next) => {
 
     Post.findById(req.params.post_id)
         .then(post => {
-            console.log('elusuario', req.user.id);
-            console.log('eldueño', post.owner._id);
+
 
             // if (req.user.role !== 'ADMIN' && req.user.id !== post.owner._id) {
             //     res.status(403).json({ message: 'Forbidden' })
@@ -116,10 +120,10 @@ router.delete('/comment/:comment_id', (req, res, next) => {
 
     Comment.findById(req.params.comment_id)
         .then(comment => {
-            if (req.user.role !== 'ADMIN' && req.user.id !== comment.owner) {
-                res.status(403).json({ message: 'Forbidden' })
-                return
-            }
+            // if (req.user.role !== 'ADMIN' && req.user.id !== comment.owner) {
+            //     res.status(403).json({ message: 'Forbidden' })
+            //     return
+            // }
             return comment.remove()
         })
         .then(response => res.json(response))

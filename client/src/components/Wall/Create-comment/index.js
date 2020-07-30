@@ -24,7 +24,8 @@ class CreateComment extends Component {
         this.postsService
             .commentToPost(this.props.id, this.state)
             .then(() => this.props.updateWall())
-            // .then(response => this.setState(response.data ))
+            .then(response => this.setState(response.data))
+            .then(this.setState({content: ''}))
             .catch(err => console.log(err))
     }
     render() {
