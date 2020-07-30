@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-
+// import Comments from './comments'
 import CreateComment from '../Create-comment'
 
 import Card from 'react-bootstrap/Card'
@@ -62,7 +62,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                             ['lg'].map(idx => (
                                                 <ListGroup>
                                                     {comments.map(comment => (
-                                                        <ListGroup.Item key={comment._id}>
+                                                        <ListGroup.Item key={comment._id} >
                                                             <Card>
                                                                 <Card.Header> <Link to={`/user/${comment.owner._id}`}>
                                                                     <Card.Title>

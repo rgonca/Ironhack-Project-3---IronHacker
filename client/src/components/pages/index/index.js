@@ -7,7 +7,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import Nav from 'react-bootstrap/Navbar'
 import './index.css'
 
 const Index = () => {
@@ -24,9 +25,15 @@ const Index = () => {
                     </div>
                     <hr></hr>
                     <div className="buttons">
-                        <Link to="/login" activeStyle={{ color: 'white' }}> <Button variant="outline-primary" size="lg">Login</Button>  {' '}</Link>
 
-                        <Link to="/signup" activeStyle={{ color: 'white' }}><Button variant="outline-secondary" size="lg">Signup</Button> {' '}</Link>
+                 
+                        <NavLink to="/signup" activeStyle={{ color: 'white' }}><Button variant="outline-secondary" size="lg">Signup</Button></NavLink>
+  
+                        <NavLink to="/login" activeStyle={{ color: 'white' }}> <Button variant="outline-primary" size="lg">Login</Button></NavLink>
+       
+                        {/* <Link to="/login" activeStyle={{ color: 'white' }}> <Button variant="outline-primary" size="lg">Login</Button>  {' '}</Link>
+
+                        <Link to="/signup" activeStyle={{ color: 'white' }}><Button variant="outline-secondary" size="lg">Signup</Button> {' '}</Link> */}
 
 
                     </div>
