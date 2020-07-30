@@ -15,7 +15,6 @@ router.get('/getAllPosts', (req, res, next) => {
     Post.find()
         .populate('owner', ['name', 'surname', 'avatarUrl'])
         .populate('comments', ['_id', 'owner', 'content', 'createdAt'])
-        .populate('comments.owner', 'name')
         .then(response => res.json(response))
         .catch(err => next(err))
 })
