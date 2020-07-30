@@ -137,12 +137,6 @@ router.patch('/:comment_id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-// router.get('/:post_id/getallcomments', (req, res, next) => {
-
-//     Comment.find().populate('owner', ['name', 'surname', 'avatarUrl'])
-//         .then(response => res.json(response))
-//         .catch(err => next(err))
-// })
 
 //Deploy the list of users
 router.get('/getAllUsers', (req, res, next) => {

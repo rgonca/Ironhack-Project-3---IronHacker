@@ -5,7 +5,7 @@ import PostsService from '../../../service/PostsService'
 import PostCard from '../Post-Card'
 import CreatePost from '../Create-post'
 import EditPost from '../Edit-post'
-import SearchBar from '../Searchbar'
+// import SearchBar from '../Searchbar'
 
 
 
@@ -26,9 +26,7 @@ class PostsWall extends Component {
             showEditionModal: false,
             // tags: [],
             post: {},
-            // isPostViewOn: false,
-            // sortValue: '',
-            // inputValue: ''
+
         }
         this.postsService = new PostsService()
     }
@@ -104,7 +102,7 @@ class PostsWall extends Component {
 
                     <h1>The Wall</h1>
 
-                    <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/>
+                    {/* <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/> */}
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />

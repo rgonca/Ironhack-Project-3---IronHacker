@@ -18,8 +18,10 @@ const UserCard = ({ _id, avatarUrl, name, surname, role, bootcamp, }) => {
             <Card className="user-card" bg="light" border="secondary">
                 <Card.Body>
                     <Link to={`/user/${_id}`}>
+                        <Image className="avatarlist" src={avatarUrl} />
                         <Card.Title>
-                            <Image className="avatar" src={avatarUrl} />
+                         
+
                             {name} {surname}
                         </Card.Title></Link>
                     <Card.Subtitle className="mb-2 text-muted">{bootcamp}, {role}</Card.Subtitle>

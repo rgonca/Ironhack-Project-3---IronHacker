@@ -1,11 +1,22 @@
 .user-card {
     margin-bottom: 40px;
       font-family:'Montserrat', sans-serif;
-      width: 20rem;
+      width: 16rem;
       text-decoration: none;
       margin-right: 40px;
+      display: flex;
+      align-items: center;
+      align-content: center;
 }
 .card-title {
     color: black;
     font-weight: bolder;
+}
+
+.avatarlist  {
+
+    height: 180px;
+    width: 180px;
+    object-fit: cover;
+
 }

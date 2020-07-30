@@ -31,9 +31,9 @@ const Index = () => {
   
                         <NavLink to="/login" activeStyle={{ color: 'white' }}> <Button variant="outline-primary" size="lg">Login</Button></NavLink> */}
        
-                        {/* <Link to="/login" activeStyle={{ color: 'white' }}> <Button variant="outline-primary" size="lg">Login</Button>  {' '}</Link>
+                        <Link to="/login" activeStyle={{ color: 'white' }}> <Button variant="outline-primary" size="lg">Login</Button>  {' '}</Link>
 
-                        <Link to="/signup" activeStyle={{ color: 'white' }}><Button variant="outline-secondary" size="lg">Signup</Button> {' '}</Link> */}
+                        <Link to="/signup" activeStyle={{ color: 'white' }}><Button variant="outline-secondary" size="lg">Signup</Button> {' '}</Link>
 
 
                     </div>
