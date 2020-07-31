@@ -46,6 +46,8 @@ class SearchBar extends Component {
     }
 
     render() {
+console.log("ES ESTE",this.state.tags)
+
         return (
 
             <>

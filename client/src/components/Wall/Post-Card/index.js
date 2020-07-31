@@ -17,7 +17,7 @@ import './Post-card.css'
 
 
 const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteButton, comments, updateWall, handleEditionModal, editPostButton, deleteCommentButton }) => {
-    
+    console.log('traza', comments)
     return (
 
         <Col md={8}>
@@ -36,7 +36,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                         <Card.Title>
 
                             <Image className="avatar" src={owner.avatarUrl} />
-                            {owner.name} {owner.surname}
+                                {owner.name} {owner.surname}
                         </Card.Title>
                     </Link>
                     <Card.Subtitle className="mb-2 text-muted">{createdAt}</Card.Subtitle>
@@ -49,8 +49,9 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                 ))}
                             </ListGroup>
                         ))}
+ 
                         <Accordion>
-                            <Card>
+                          
                                 <Card.Header>
                                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                         Comments <FontAwesomeIcon icon={faEye} size="lg" />
@@ -63,7 +64,7 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                                 <ListGroup>
                                                     {comments.map(comment => (
                                                         <ListGroup.Item key={comment._id} >
-                                                            <Card>
+                                 
                                                                 <Card.Header>
                                                                     <Link to={`/user/${comment.owner._id}`}>
                                                                     <Card.Title>
@@ -85,14 +86,14 @@ const PostCard = ({ loggedInUser, _id, owner, createdAt, content, tags, deleteBu
                                                                         </footer>
                                                                     </blockquote>
                                                                 </Card.Body>
-                                                            </Card>
+                                                    
                                                         </ListGroup.Item>
                                                     ))}
                                                 </ListGroup>
                                             ))}
                                     </Card.Body>
                                 </Accordion.Collapse>
-                            </Card>
+                           
                         </Accordion>
                         <CreateComment id={_id} updateWall={updateWall} />
 

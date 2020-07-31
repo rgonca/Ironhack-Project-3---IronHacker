@@ -5,7 +5,7 @@ import PostsService from '../../../service/PostsService'
 import PostCard from '../Post-Card'
 import CreatePost from '../Create-post'
 import EditPost from '../Edit-post'
-// import SearchBar from '../Searchbar'
+import SearchBar from '../Searchbar'
 
 
 
@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/Row'
 import Modal from 'react-bootstrap/Modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+
 
 
 class PostsWall extends Component {
@@ -78,7 +79,7 @@ class PostsWall extends Component {
     editPostButton = (_id) => {
         this.postsService
             .getOnePost(_id)
-            .then(response => this.setState({ post: response.data }))
+            .then(response => this.setState({ post: response}))
             .catch(err => console.log('muestrame el error', err))
     }
     //delete comments on posts
@@ -101,7 +102,7 @@ class PostsWall extends Component {
 
                     <h1 className="directory">The Wall</h1>
 
-                    {/* <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/> */}
+                    <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/>
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />

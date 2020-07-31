@@ -91,6 +91,12 @@ router.get('/postByTags', (req, res, next) => {
     const tags = req.query.tags.split(',')
     console.log('traza busqueda', JSON.stringify(req.query.tags, null, 2))
     Post.find({ tags: tags })
+        .populate('owner', ['name', 'surname', 'avatarUrl'])
+        .populate({
+            path: 'comments', populate: {
+                path: 'owner', model: 'User'
+            },
+        })
         .then(response => res.json(response))
         .catch(err => next(err))
 
@@ -130,12 +136,12 @@ router.delete('/comment/:comment_id', (req, res, next) => {
         .catch(err => next(err))
 
 })
-//Edits one Comment--->por probar
-router.patch('/:comment_id', (req, res, next) => {
-    Comment.findByIdAndUpdate(req.params.post_id)
-        .then((data) => res.status(200).json(data))
-        .catch(err => next(err))
-})
+// Edits one Comment--->por probar
+// router.patch('/:comment_id', (req, res, next) => {
+//     Comment.findByIdAndUpdate(req.params.post_id)
+//         .then((data) => res.status(200).json(data))
+//         .catch(err => next(err))
+// })
 
 
 //Deploy the list of users
