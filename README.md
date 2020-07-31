@@ -12,6 +12,35 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them:
 On the server folder:
 
+On Client & Server
 ```
 npm i 
 ```
+
+AUTH & PROFILE ROUTES:
+
+| Method   | #POST   |  #POST  | #POST  |  #GET     | #GET        | PATCH      |
+| -------- | ------- | ------- | ------ | --------- | ------------| -----------|
+| Endpoint | /signup |  /login | /logout| /loggedin | //users/:id | /users/:id |
+| Action   | Sign up |  Log in | Log out| Check user| Get user    | Edit user  |
+
+POSTS ROUTES:
+
+| Method   | #GET               | #GET                  | #POST          | #DELETE          | #PATCH               | 
+| -------- | ------------------ | --------------------- | -------------- | ---------------- | -------------------- |
+| Endpoint | /getAllPosts       | /getOnePost/:post_id' | /newPost       | /:post_id        | /:post_id            |
+| Action   | Gets lists of post | New registry          |Creates new post| Delete one post  | Edit one post        |
+
+| Method   | #GET                | #POST                   | #DELETE                  | #GET                   | #GET                                | 
+| -------- | ------------------  | ----------------------- | ------------------------ | ---------------------- | ----------------------------------- |
+| Endpoint | /postByTags         | /commentToPost/:post_id | /comment/:comment_id     | /getAllUsers           | //getOneUser/:user_id'              |
+| Action   | Filtes posts by tags| Comments one post       |Deletes one comment       | Deploys list of users  | Selects one user from the list      |
+
+CLOUDINARY ROUTES:
+
+| Method   | #POST                  |
+| -------- | ---------------------- |
+| Endpoint | /upload                |
+| Action   | Uploads an image to DB |
+
+
