@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/Row'
 import Modal from 'react-bootstrap/Modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import './wall.css'
 
 
 
@@ -102,11 +103,13 @@ class PostsWall extends Component {
 
                     <h1 className="directory">The Wall</h1>
 
-                    <SearchBar filterPosts={this.filterPosts} updateWall={this.updateWall}/>
+                    <SearchBar className="searchbar" filterPosts={this.filterPosts} updateWall={this.updateWall} />
+                    <div className="newPostButton">
 
                     {
                         this.props.loggedInUser && <FontAwesomeIcon onClick={() => this.handleModal(true)} icon={faPlusSquare} size="2x" />
-                    }
+                        }
+                    </div>
                     <Row className='posts'>
                         {this.state.posts.reverse().map(elm => <PostCard key={elm._id} {...elm}
 

@@ -1,4 +1,6 @@
-.react-tags {
+.react-tags { 
+  margin: auto;
+  width: 730px ;
   position: relative;
   padding: 6px 0 0 6px;
   border: 1px solid #D1D1D1;
