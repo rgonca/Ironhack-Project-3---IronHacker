@@ -55,4 +55,7 @@ CLOUDINARY ROUTES:
 | Endpoint | /upload                |
 | Action   | Uploads an image to DB |
 
+## Technologies
+
+Reactjs, Node.js, MongoDB, express, Axios
 
