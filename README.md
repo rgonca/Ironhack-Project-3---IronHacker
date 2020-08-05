@@ -12,10 +12,16 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them:
 On the server folder:
 
+
+### Installation
+
 On Client & Server
 ```
 npm i 
 ```
+## Usage
+
+### Backend routes
 
 AUTH & PROFILE ROUTES:
 
@@ -31,10 +37,16 @@ POSTS ROUTES:
 | Endpoint | /getAllPosts       | /getOnePost/:post_id' | /newPost       | /:post_id        | /:post_id            |
 | Action   | Gets lists of post | New registry          |Creates new post| Delete one post  | Edit one post        |
 
-| Method   | #GET                | #POST                   | #DELETE                  | #GET                   | #GET                                | 
-| -------- | ------------------  | ----------------------- | ------------------------ | ---------------------- | ----------------------------------- |
-| Endpoint | /postByTags         | /commentToPost/:post_id | /comment/:comment_id     | /getAllUsers           | //getOneUser/:user_id'              |
-| Action   | Filtes posts by tags| Comments one post       |Deletes one comment       | Deploys list of users  | Selects one user from the list      |
+| Method   | #GET                | #POST                   | #DELETE                  | #GET                   |
+| -------- | ------------------  | ----------------------- | ------------------------ | ---------------------- |
+| Endpoint | /postByTags         | /commentToPost/:post_id | /comment/:comment_id     | /getAllUsers           | 
+| Action   | Filtes posts by tags| Comments one post       |Deletes one comment       | Deploys list of users  | 
+
+
+| Method   | #GET                                | 
+| -------- | ----------------------------------- |
+| Endpoint | //getOneUser/:user_id'              |
+| Action   | Selects one user from the list      |
 
 CLOUDINARY ROUTES:
 
